@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,wght@0,300;1,300;1,400&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #070910;
+  --bg2:     #0b0d14;
+  --surface: #111420;
+  --sur2:    #181d2e;
+  --border:  #1e2438;
+  --border2: #252d42;
+  --accent:  #5eebc8;
+  --accent2: #8b7cf8;
+  --accent3: #f0885a;
+  --text:    #dde1ee;
+  --muted:   #697288;
+  --dim:     #313851;
+  --glow:    rgba(94,235,200,0.14);
+  --glow2:   rgba(139,124,248,0.1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
