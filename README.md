@@ -141,7 +141,7 @@ A modern blogging platform supporting user authentication, blog publishing, comm
 # 📫 Connect With Me
 
 * **GitHub:** [https://github.com/azlansindhi](https://github.com/azlansindhi)
-* **LinkedIn:** [https://linkedin.com/in/azlan-sindhi](https://linkedin.com/in/azlan-sindhi)
+* **LinkedIn:** [https://linkedin.com/in/azlan-sindhi](https://www.linkedin.com/in/azlan-sindhi-)
 * **Email:** [azlaank1284@gmail.com](mailto:azlaank1284@gmail.com)
 
 ---
