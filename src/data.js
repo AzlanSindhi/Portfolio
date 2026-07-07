@@ -94,7 +94,6 @@ export const projects = [
     liveUrl: "#",
     githubUrl: "https://github.com/azlansindhi/DataGenie",
     featured: false,
-   gridColumn: 'auto'
   },
   {
     id: 3,
