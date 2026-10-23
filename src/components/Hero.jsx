@@ -44,11 +44,7 @@ export default function Hero() {
             width:6, height:6, background:'var(--accent)', borderRadius:'50%',
             animation:'pulse 2s infinite',
           }} />
-<<<<<<< HEAD
           {profile.status || "MSc Data Science · Kingston University"}
-=======
-          BCA Graduate 2026
->>>>>>> origin/main
         </motion.div>
 
         {/* name */}
@@ -99,7 +95,6 @@ export default function Hero() {
           >
             View Projects →
           </a>
-<<<<<<< HEAD
           <a href="/cv.html" target="_blank" rel="noopener noreferrer" style={{
             padding:'0.85rem 2rem', background:'rgba(139,124,248,0.1)', color:'#a49cf8',
             borderRadius:'8px', fontSize:'0.78rem', letterSpacing:'0.06em',
@@ -112,8 +107,6 @@ export default function Hero() {
           >
             View CV ↗
           </a>
-=======
->>>>>>> origin/main
           <a href={`mailto:${profile.email}`} style={{
             padding:'0.85rem 2rem', background:'transparent', color:'var(--muted)',
             borderRadius:'8px', fontSize:'0.78rem', letterSpacing:'0.06em',

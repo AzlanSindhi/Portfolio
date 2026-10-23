@@ -276,17 +276,10 @@ export default function Certifications() {
                   justifyContent: 'center',
                   overflowY: 'auto',
                   flex: 1,
-<<<<<<< HEAD
                   minHeight: '320px',
                 }}
               >
                 {selectedCert.fileUrl && selectedCert.fileType === 'pdf' ? (
-=======
-                  minHeight: '350px',
-                }}
-              >
-                {selectedCert.fileType === 'pdf' ? (
->>>>>>> origin/main
                   <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     <iframe
                       src={selectedCert.fileUrl}
@@ -311,11 +304,7 @@ export default function Certifications() {
                       </a>
                     </p>
                   </div>
-<<<<<<< HEAD
                 ) : selectedCert.fileUrl && selectedCert.fileType === 'image' ? (
-=======
-                ) : (
->>>>>>> origin/main
                   <img
                     src={selectedCert.fileUrl}
                     alt={selectedCert.title}
@@ -326,7 +315,6 @@ export default function Certifications() {
                       borderRadius: '8px',
                       boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
                     }}
-<<<<<<< HEAD
                   />
                 ) : (
                   <div style={{
@@ -381,13 +369,6 @@ export default function Certifications() {
                       </a>
                     )}
                   </div>
-=======
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = 'https://placehold.co/600x400/111420/5eebc8?text=Certificate+Image+Placeholder';
-                    }}
-                  />
->>>>>>> origin/main
                 )}
               </div>
 
@@ -423,7 +404,6 @@ export default function Certifications() {
                 )}
 
                 <div style={{ display: 'flex', gap: '0.8rem' }}>
-<<<<<<< HEAD
                   {selectedCert.fileUrl && (
                     <a
                       href={selectedCert.fileUrl}
@@ -452,34 +432,6 @@ export default function Certifications() {
                       Download File ↓
                     </a>
                   )}
-=======
-                  <a
-                    href={selectedCert.fileUrl}
-                    download
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{
-                      padding: '0.55rem 1.2rem',
-                      background: 'var(--accent)',
-                      color: '#000',
-                      borderRadius: '6px',
-                      fontSize: '0.72rem',
-                      fontFamily: 'Syne, sans-serif',
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                      transition: 'all 0.2s',
-                      textDecoration: 'none',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = '0 0 15px rgba(94,235,200,0.3)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.boxShadow = 'none';
-                    }}
-                  >
-                    Download File ↓
-                  </a>
->>>>>>> origin/main
                   <button
                     onClick={() => setSelectedCert(null)}
                     style={{

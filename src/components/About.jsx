@@ -3,17 +3,10 @@ import { profile, education } from '../data';
 import SectionHeader from './SectionHeader';
 
 const stats = [
-<<<<<<< HEAD
   { num:'5+', label:'Projects Built' },
   { num:'200K+', label:'Data Records Processed' },
   { num:'MSc', label:'Kingston University' },
   { num:'7.59', label:'BCA CGPA (Distinction)' },
-=======
-  { num:'3+', label:'Projects Built' },
-  { num:'200K+', label:'Data Points Processed' },
-  { num:'BCA', label:'Degree (2026)' },
-  { num:'5+', label:'Tech Stacks' },
->>>>>>> origin/main
 ];
 
 export default function About() {

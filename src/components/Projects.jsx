@@ -71,7 +71,6 @@ function ProjectCard({ project, index }) {
             </p>
           )}
           {featured && (
-<<<<<<< HEAD
             <div style={{ flex: 1 }}>
               <p style={{ fontSize:'0.85rem', color:'var(--muted)', lineHeight:1.85, marginBottom: project.highlights ? '0.9rem' : 0 }}>
                 {project.description}
@@ -87,11 +86,6 @@ function ProjectCard({ project, index }) {
                 </ul>
               )}
             </div>
-=======
-            <p style={{ fontSize:'0.85rem', color:'var(--muted)', lineHeight:1.85, flex:1 }}>
-              {project.description}
-            </p>
->>>>>>> origin/main
           )}
         </div>
 
@@ -154,19 +148,11 @@ function ProjectCard({ project, index }) {
                 GitHub →
               </a>
             )}
-<<<<<<< HEAD
             {(project.liveUrl === '#' && (!project.githubUrl || project.githubUrl === '#')) && (
               <span style={{
                 fontSize:'0.68rem', color:'var(--dim)',
               }}>
                 Repository / Demo upon request
-=======
-            {(project.liveUrl === '#' && project.githubUrl === '#') && (
-              <span style={{
-                fontSize:'0.68rem', color:'var(--dim)', fontStyle:'italic',
-              }}>
-                Add links in src/data.js
->>>>>>> origin/main
               </span>
             )}
           </div>
