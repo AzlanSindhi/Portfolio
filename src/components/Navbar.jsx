@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+<<<<<<< HEAD
 import { profile } from '../data';
+=======
+>>>>>>> origin/main
 
 const links = ['About', 'Skills', 'Experience', 'Projects', 'Certifications', 'Contact'];
 
@@ -50,7 +53,11 @@ export default function Navbar() {
         ))}
       </ul>
 
+<<<<<<< HEAD
       <a href={`mailto:${profile.email}`} style={{
+=======
+      <a href="mailto:azlaank1284@gmail.com" style={{
+>>>>>>> origin/main
         padding:'0.5rem 1.2rem',
         border:'1px solid var(--border2)',
         borderRadius:'6px',

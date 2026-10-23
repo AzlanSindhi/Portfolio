@@ -41,7 +41,11 @@ export default function Skills() {
               fontSize:'0.65rem', letterSpacing:'0.15em', textTransform:'uppercase',
               color:'var(--muted)', marginBottom:'1.2rem',
             }}>
+<<<<<<< HEAD
               ✦ Professional & Transferable Skills
+=======
+              ✦ Soft Skills
+>>>>>>> origin/main
             </p>
             <div style={{ display:'flex', flexWrap:'wrap', gap:'0.65rem' }}>
               {skills.soft.map((s, i) => (
@@ -63,6 +67,7 @@ export default function Skills() {
               fontSize:'0.65rem', letterSpacing:'0.15em', textTransform:'uppercase',
               color:'var(--accent2)', marginBottom:'1.2rem',
             }}>
+<<<<<<< HEAD
               ⚡ Technical Competencies
             </p>
             <div style={{ display:'flex', flexDirection:'column', gap:'1.4rem' }}>
@@ -88,6 +93,21 @@ export default function Skills() {
                     ))}
                   </div>
                 </div>
+=======
+              ⚡ Technologies
+            </p>
+            <div style={{ display:'flex', flexWrap:'wrap', gap:'0.65rem' }}>
+              {skills.tech.map((s, i) => (
+                <motion.div
+                  key={s}
+                  initial={{ opacity:0, y:10 }}
+                  whileInView={{ opacity:1, y:0 }}
+                  viewport={{ once:true }}
+                  transition={{ delay: i * 0.05 }}
+                >
+                  <Tag label={s} variant="tech" />
+                </motion.div>
+>>>>>>> origin/main
               ))}
             </div>
           </div>

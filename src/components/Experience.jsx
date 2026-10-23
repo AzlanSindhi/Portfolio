@@ -1,5 +1,9 @@
 import { motion } from 'framer-motion';
+<<<<<<< HEAD
 import { experience, profile } from '../data';
+=======
+import { experience } from '../data';
+>>>>>>> origin/main
 import SectionHeader from './SectionHeader';
 
 function ExperienceCard({ exp, index }) {
@@ -76,7 +80,11 @@ function ExperienceCard({ exp, index }) {
         <div style={{
           display: 'flex', justifyContent: 'space-between',
           alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.8rem',
+<<<<<<< HEAD
           marginBottom: '0.8rem',
+=======
+          marginBottom: '1rem',
+>>>>>>> origin/main
         }}>
           <div>
             {/* type badge */}
@@ -130,6 +138,7 @@ function ExperienceCard({ exp, index }) {
           </span>
         </div>
 
+<<<<<<< HEAD
         {/* Live link if available */}
         {exp.liveUrl && (
           <div style={{ marginBottom: '1rem' }}>
@@ -154,6 +163,8 @@ function ExperienceCard({ exp, index }) {
           </div>
         )}
 
+=======
+>>>>>>> origin/main
         {/* description */}
         <p style={{
           fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.85, marginBottom: '1.2rem',
@@ -209,6 +220,26 @@ export default function Experience() {
             {experience.map((exp, i) => (
               <ExperienceCard key={exp.id} exp={exp} index={i} />
             ))}
+<<<<<<< HEAD
+=======
+
+            {/* Add more hint */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              style={{
+                display: 'flex', alignItems: 'center', gap: '1rem',
+                color: 'var(--dim)', fontSize: '0.72rem',
+                fontStyle: 'italic', marginTop: '0.5rem',
+                paddingLeft: '2rem',
+              }}
+            >
+              <span style={{ flex: 1, height: 1, background: 'var(--border)' }} />
+              Add more in <code style={{ color: 'var(--accent)', fontStyle: 'normal', fontSize: '0.68rem' }}>src/data.js</code>
+              <span style={{ flex: 1, height: 1, background: 'var(--border)' }} />
+            </motion.div>
+>>>>>>> origin/main
           </div>
 
           {/* Sidebar sticky card */}
@@ -237,18 +268,32 @@ export default function Experience() {
 
               <p style={{
                 fontFamily: 'Fraunces, serif', fontStyle: 'italic',
+<<<<<<< HEAD
                 fontSize: '1.05rem', color: 'var(--text)', lineHeight: 1.5,
                 marginBottom: '1.5rem', fontWeight: 300,
               }}>
                 "Pragmatic MSc student & full-stack developer focused on scalable, data-driven solutions."
+=======
+                fontSize: '1.1rem', color: 'var(--text)', lineHeight: 1.5,
+                marginBottom: '1.5rem', fontWeight: 300,
+              }}>
+                "Fresh graduate, hungry to contribute and grow."
+>>>>>>> origin/main
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                 {[
+<<<<<<< HEAD
                   { icon: '🎓', label: 'Education', sub: 'MSc Data Science, Kingston University' },
                   { icon: '📍', label: 'Based in', sub: profile.location },
                   { icon: '💼', label: 'Current Roles', sub: 'Full-Stack Developer @ Satya & Asmira' },
                   { icon: '🔍', label: 'Available for', sub: 'Data Science & Developer Roles' },
+=======
+                  { icon: '🎓', label: 'BCA Student', sub: 'Dolat-Usha Institute' },
+                  { icon: '📍', label: 'Based in', sub: 'Valsad, Gujarat' },
+                  { icon: '🔍', label: 'Looking for', sub: 'Internships & Entry-level roles' },
+                  { icon: '💻', label: 'Available for', sub: 'Remote & Hybrid work' },
+>>>>>>> origin/main
                 ].map(item => (
                   <div key={item.label} style={{
                     display: 'flex', alignItems: 'center', gap: '0.8rem',
@@ -267,7 +312,11 @@ export default function Experience() {
               </div>
 
               <a
+<<<<<<< HEAD
                 href={`mailto:${profile.email}`}
+=======
+                href="mailto:azlaank1284@gmail.com"
+>>>>>>> origin/main
                 style={{
                   display: 'block', marginTop: '1.5rem',
                   padding: '0.8rem', textAlign: 'center',
