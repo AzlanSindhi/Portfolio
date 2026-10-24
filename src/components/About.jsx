@@ -11,13 +11,11 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" style={{ padding:'6rem 3rem', zIndex:1, position:'relative' }}>
-      <div style={{ maxWidth:1100, margin:'0 auto' }}>
+    <section id="about" className="section-wrapper">
+      <div className="section-inner">
         <SectionHeader num="01" title="About Me" />
 
-        <div style={{
-          display:'grid', gridTemplateColumns:'1.1fr 0.9fr', gap:'5rem', alignItems:'start',
-        }}>
+        <div className="about-grid">
           {/* left */}
           <div>
             <motion.p
@@ -26,7 +24,7 @@ export default function About() {
               viewport={{ once:true }}
               style={{
                 fontFamily:'Fraunces, serif', fontStyle:'italic',
-                fontSize:'1.2rem', color:'var(--text)', lineHeight:1.7,
+                fontSize:'clamp(1.05rem, 3vw, 1.25rem)', color:'var(--text)', lineHeight:1.7,
                 marginBottom:'1.5rem', fontWeight:300,
               }}
             >
@@ -37,7 +35,10 @@ export default function About() {
               initial={{ opacity:0 }} whileInView={{ opacity:1 }} viewport={{ once:true }}
               transition={{ delay:0.2 }}
             >
-              <p style={{ color:'var(--muted)', fontSize:'0.82rem', marginBottom:'0.8rem' }}>
+              <p style={{
+                color:'var(--muted)', fontSize:'0.82rem', marginBottom:'0.8rem',
+                wordBreak: 'break-word',
+              }}>
                 📍 {profile.location} &nbsp;·&nbsp; 📧{' '}
                 <a href={`mailto:${profile.email}`} style={{ color:'var(--accent)' }}>
                   {profile.email}
@@ -62,7 +63,7 @@ export default function About() {
                   viewport={{ once:true }}
                   transition={{ delay: i * 0.1 }}
                   style={{
-                    padding:'1.2rem 1.5rem',
+                    padding:'clamp(1rem, 2.5vw, 1.2rem) clamp(1rem, 3vw, 1.5rem)',
                     background:'var(--surface)',
                     border:'1px solid var(--border)',
                     borderRadius:'10px',
@@ -88,9 +89,7 @@ export default function About() {
           </div>
 
           {/* right: stats */}
-          <div style={{
-            display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.2rem',
-          }}>
+          <div className="stats-grid">
             {stats.map((s, i) => (
               <motion.div
                 key={s.label}
@@ -102,7 +101,7 @@ export default function About() {
                   background:'var(--surface)',
                   border:'1px solid var(--border)',
                   borderRadius:'12px',
-                  padding:'1.8rem 1.5rem',
+                  padding:'clamp(1.2rem, 3vw, 1.8rem) clamp(1rem, 3vw, 1.5rem)',
                   position:'relative',
                   overflow:'hidden',
                 }}
@@ -113,7 +112,7 @@ export default function About() {
                 }} />
                 <span style={{
                   fontFamily:'Syne, sans-serif', fontWeight:800,
-                  fontSize:'2.2rem', color:'var(--accent)',
+                  fontSize:'clamp(1.6rem, 5vw, 2.2rem)', color:'var(--accent)',
                   display:'block', lineHeight:1, marginBottom:'0.5rem',
                 }}>
                   {s.num}

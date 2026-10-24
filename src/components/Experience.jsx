@@ -9,7 +9,7 @@ function ExperienceCard({ exp, index }) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.12, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-      style={{ display: 'flex', gap: '2rem', position: 'relative' }}
+      className="exp-card-container"
     >
       {/* Timeline spine */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
@@ -46,10 +46,11 @@ function ExperienceCard({ exp, index }) {
         whileHover={{ y: -3, borderColor: 'rgba(94,235,200,0.25)' }}
         style={{
           flex: 1,
+          minWidth: 0,
           background: 'var(--surface)',
           border: '1px solid var(--border)',
           borderRadius: '14px',
-          padding: '2rem',
+          padding: 'clamp(1.25rem, 3vw, 2rem)',
           marginBottom: '1.5rem',
           position: 'relative',
           overflow: 'hidden',
@@ -78,9 +79,9 @@ function ExperienceCard({ exp, index }) {
           alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.8rem',
           marginBottom: '0.8rem',
         }}>
-          <div>
+          <div style={{ minWidth: 0, flex: '1 1 200px' }}>
             {/* type badge */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.4rem', flexWrap: 'wrap' }}>
               <span style={{
                 fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase',
                 color: exp.current ? 'var(--accent)' : 'var(--accent2)',
@@ -93,7 +94,7 @@ function ExperienceCard({ exp, index }) {
                   display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
                   fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase',
                   background: 'rgba(94,235,200,0.08)', border: '1px solid rgba(94,235,200,0.2)',
-                  color: 'var(--accent)', padding: '0.2rem 0.6rem', borderRadius: '100px',
+                  color: 'var(--accent)', padding: '0.15rem 0.5rem', borderRadius: '100px',
                 }}>
                   <span style={{
                     width: 5, height: 5, borderRadius: '50%', background: 'var(--accent)',
@@ -107,8 +108,8 @@ function ExperienceCard({ exp, index }) {
             {/* role */}
             <h3 style={{
               fontFamily: 'Syne, sans-serif', fontWeight: 700,
-              fontSize: '1.1rem', color: 'var(--text)',
-              letterSpacing: '-0.01em', lineHeight: 1.2,
+              fontSize: 'clamp(1rem, 2.5vw, 1.15rem)', color: 'var(--text)',
+              letterSpacing: '-0.01em', lineHeight: 1.25,
             }}>
               {exp.role}
             </h3>
@@ -119,12 +120,13 @@ function ExperienceCard({ exp, index }) {
 
           {/* duration */}
           <span style={{
-            fontSize: '0.7rem', color: 'var(--dim)', letterSpacing: '0.06em',
+            fontSize: '0.68rem', color: 'var(--dim)', letterSpacing: '0.06em',
             fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap',
-            padding: '0.3rem 0.8rem',
+            padding: '0.25rem 0.65rem',
             background: 'var(--bg2)',
             border: '1px solid var(--border)',
             borderRadius: '6px',
+            alignSelf: 'flex-start',
           }}>
             {exp.duration}
           </span>
@@ -132,7 +134,7 @@ function ExperienceCard({ exp, index }) {
 
         {/* Live link if available */}
         {exp.liveUrl && (
-          <div style={{ marginBottom: '1rem' }}>
+          <div style={{ marginBottom: '0.9rem' }}>
             <a
               href={exp.liveUrl}
               target="_blank"
@@ -145,6 +147,7 @@ function ExperienceCard({ exp, index }) {
                 color: 'var(--accent)',
                 fontFamily: 'DM Mono, monospace',
                 textDecoration: 'none',
+                wordBreak: 'break-all',
               }}
               onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
               onMouseLeave={e => e.currentTarget.style.textDecoration = 'none'}
@@ -156,21 +159,21 @@ function ExperienceCard({ exp, index }) {
 
         {/* description */}
         <p style={{
-          fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.85, marginBottom: '1.2rem',
+          fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.85, marginBottom: '1.1rem',
         }}>
           {exp.description}
         </p>
 
         {/* highlights */}
         {exp.highlights && exp.highlights.length > 0 && (
-          <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.4rem' }}>
+          <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.25rem' }}>
             {exp.highlights.map((h, i) => (
               <li key={i} style={{
-                display: 'flex', alignItems: 'flex-start', gap: '0.7rem',
+                display: 'flex', alignItems: 'flex-start', gap: '0.6rem',
                 fontSize: '0.78rem', color: 'var(--muted)', lineHeight: 1.6,
               }}>
-                <span style={{ color: 'var(--accent)', flexShrink: 0, marginTop: '0.25rem' }}>▸</span>
-                {h}
+                <span style={{ color: 'var(--accent)', flexShrink: 0, marginTop: '0.2rem' }}>▸</span>
+                <span>{h}</span>
               </li>
             ))}
           </ul>
@@ -180,7 +183,7 @@ function ExperienceCard({ exp, index }) {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem' }}>
           {exp.tags.map(t => (
             <span key={t} style={{
-              fontSize: '0.62rem', padding: '0.25rem 0.75rem', borderRadius: '4px',
+              fontSize: '0.62rem', padding: '0.25rem 0.65rem', borderRadius: '4px',
               background: 'rgba(139,124,248,0.08)', border: '1px solid rgba(139,124,248,0.2)',
               color: '#a49cf8', letterSpacing: '0.04em', fontFamily: 'DM Mono, monospace',
             }}>
@@ -195,15 +198,14 @@ function ExperienceCard({ exp, index }) {
 
 export default function Experience() {
   return (
-    <section id="experience" style={{
-      padding: '6rem 3rem', zIndex: 1, position: 'relative',
+    <section id="experience" className="section-wrapper" style={{
       background: 'var(--bg2)',
       borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)',
     }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+      <div className="section-inner">
         <SectionHeader num="02.5" title="Experience" />
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '4rem', alignItems: 'start' }}>
+        <div className="experience-layout">
           {/* Timeline */}
           <div>
             {experience.map((exp, i) => (
@@ -211,17 +213,18 @@ export default function Experience() {
             ))}
           </div>
 
-          {/* Sidebar sticky card */}
+          {/* Sidebar card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            style={{ position: 'sticky', top: '6rem' }}
+            style={{ position: 'relative' }}
           >
             <div style={{
               background: 'var(--surface)', border: '1px solid var(--border)',
-              borderRadius: '14px', padding: '2rem', overflow: 'hidden', position: 'relative',
+              borderRadius: '14px', padding: 'clamp(1.25rem, 3vw, 2rem)',
+              overflow: 'hidden', position: 'relative',
             }}>
               <div style={{
                 position: 'absolute', top: 0, left: 0, right: 0, height: '2px',
@@ -230,20 +233,20 @@ export default function Experience() {
 
               <p style={{
                 fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase',
-                color: 'var(--accent2)', marginBottom: '1rem', fontFamily: 'DM Mono, monospace',
+                color: 'var(--accent2)', marginBottom: '0.8rem', fontFamily: 'DM Mono, monospace',
               }}>
                 🎓 Status
               </p>
 
               <p style={{
                 fontFamily: 'Fraunces, serif', fontStyle: 'italic',
-                fontSize: '1.05rem', color: 'var(--text)', lineHeight: 1.5,
-                marginBottom: '1.5rem', fontWeight: 300,
+                fontSize: '1rem', color: 'var(--text)', lineHeight: 1.5,
+                marginBottom: '1.4rem', fontWeight: 300,
               }}>
                 "Pragmatic MSc student & full-stack developer focused on scalable, data-driven solutions."
               </p>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {[
                   { icon: '🎓', label: 'Education', sub: 'MSc Data Science, Kingston University' },
                   { icon: '📍', label: 'Based in', sub: profile.location },
@@ -251,16 +254,16 @@ export default function Experience() {
                   { icon: '🔍', label: 'Available for', sub: 'Data Science & Developer Roles' },
                 ].map(item => (
                   <div key={item.label} style={{
-                    display: 'flex', alignItems: 'center', gap: '0.8rem',
-                    padding: '0.8rem', background: 'var(--bg2)',
+                    display: 'flex', alignItems: 'center', gap: '0.75rem',
+                    padding: '0.75rem', background: 'var(--bg2)',
                     border: '1px solid var(--border)', borderRadius: '8px',
                   }}>
-                    <span style={{ fontSize: '1rem' }}>{item.icon}</span>
-                    <div>
-                      <span style={{ fontSize: '0.65rem', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block' }}>
+                    <span style={{ fontSize: '1rem', flexShrink: 0 }}>{item.icon}</span>
+                    <div style={{ minWidth: 0 }}>
+                      <span style={{ fontSize: '0.62rem', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block' }}>
                         {item.label}
                       </span>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--text)' }}>{item.sub}</span>
+                      <span style={{ fontSize: '0.75rem', color: 'var(--text)', wordBreak: 'break-word' }}>{item.sub}</span>
                     </div>
                   </div>
                 ))}
@@ -269,7 +272,7 @@ export default function Experience() {
               <a
                 href={`mailto:${profile.email}`}
                 style={{
-                  display: 'block', marginTop: '1.5rem',
+                  display: 'block', marginTop: '1.4rem',
                   padding: '0.8rem', textAlign: 'center',
                   background: 'var(--accent)', color: '#000',
                   borderRadius: '8px', fontSize: '0.78rem',

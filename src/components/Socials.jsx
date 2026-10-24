@@ -4,28 +4,25 @@ import SectionHeader from './SectionHeader';
 
 export default function Socials() {
   return (
-    <section id="socials" style={{
-      padding:'5rem 3rem', zIndex:1, position:'relative',
+    <section id="socials" className="section-wrapper" style={{
       background:'var(--bg2)', borderTop:'1px solid var(--border)',
     }}>
-      <div style={{ maxWidth:1100, margin:'0 auto' }}>
+      <div className="section-inner">
         <SectionHeader num="00" title="Connect With Me" />
 
-        <p style={{ color: "var(--muted)",fontSize: "0.9rem", marginBottom: "2.5rem", maxWidth: 540, lineHeight: 1.7, }}>
+        <p style={{
+          color: "var(--muted)",
+          fontSize: "clamp(0.82rem, 2vw, 0.9rem)",
+          marginBottom: "clamp(1.8rem, 4vw, 2.5rem)",
+          maxWidth: 540,
+          lineHeight: 1.7,
+        }}>
           Whether you're looking for a developer, have a project in mind, or want to
           discuss technology, web development, or data science, I'd be happy to
           connect. Feel free to reach out through any of the platforms below.
         </p>
 
-        <div style={{
-          display:'grid',
-          gridTemplateColumns:'repeat(auto-fit, minmax(220px, 1fr))',
-          gap:'1px',
-          background:'var(--border)',
-          border:'1px solid var(--border)',
-          borderRadius:'14px',
-          overflow:'hidden',
-        }}>
+        <div className="socials-grid">
           {socials.map((s, i) => (
             <motion.a
               key={s.platform}
@@ -39,34 +36,40 @@ export default function Socials() {
               whileHover={{ backgroundColor:'rgba(94,235,200,0.04)', y:-2 }}
               style={{
                 background:'var(--bg2)',
-                padding:'1.8rem 2rem',
+                padding:'clamp(1.2rem, 3vw, 1.8rem) clamp(1.2rem, 3vw, 2rem)',
                 display:'flex',
                 alignItems:'center',
-                gap:'1.2rem',
+                gap:'1rem',
                 textDecoration:'none',
                 transition:'background 0.25s',
                 position:'relative',
               }}
             >
               <div style={{
-                width:46, height:46, borderRadius:'10px',
+                width:44, height:44, borderRadius:'10px',
                 background:'var(--surface)',
                 border:`1px solid var(--border)`,
                 display:'flex', alignItems:'center', justifyContent:'center',
-                fontSize:'1.4rem', flexShrink:0,
+                fontSize:'1.3rem', flexShrink:0,
               }}>
                 {s.icon}
               </div>
-              <div style={{ flex:1 }}>
+              <div style={{ flex:1, minWidth: 0 }}>
                 <span style={{
-                  fontFamily:'Syne, sans-serif', fontWeight:600, fontSize:'0.95rem',
+                  fontFamily:'Syne, sans-serif', fontWeight:600, fontSize:'0.92rem',
                   color:'var(--text)', display:'block',
+                  whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
                 }}>
                   {s.platform}
                 </span>
-                <span style={{ fontSize:'0.7rem', color:'var(--muted)' }}>{s.handle}</span>
+                <span style={{
+                  fontSize:'0.7rem', color:'var(--muted)', display: 'block',
+                  whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                }}>
+                  {s.handle}
+                </span>
               </div>
-              <span style={{ color:'var(--dim)', fontSize:'1rem' }}>↗</span>
+              <span style={{ color:'var(--dim)', fontSize:'0.9rem', flexShrink: 0 }}>↗</span>
             </motion.a>
           ))}
         </div>

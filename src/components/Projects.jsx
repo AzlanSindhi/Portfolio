@@ -16,7 +16,7 @@ function ProjectCard({ project, index }) {
         background:'var(--surface)',
         border:'1px solid var(--border)',
         borderRadius:'16px',
-        padding: featured ? '2.5rem' : '2rem',
+        padding: featured ? 'clamp(1.4rem, 3.5vw, 2.5rem)' : 'clamp(1.25rem, 3vw, 2rem)',
         position:'relative',
         overflow:'hidden',
         display:'flex',
@@ -42,25 +42,25 @@ function ProjectCard({ project, index }) {
         }} />
       )}
 
-      <div style={{
-        display: featured ? 'grid' : 'flex',
-        gridTemplateColumns: featured ? '1fr 1fr' : undefined,
+      <div className={featured ? 'featured-project-inner' : ''} style={{
+        display: featured ? undefined : 'flex',
         flexDirection: featured ? undefined : 'column',
-        gap:'2rem', flex:1,
+        gap: featured ? undefined : '1.5rem',
+        flex: 1,
       }}>
         {/* left col */}
         <div style={{ display:'flex', flexDirection:'column' }}>
           <span style={{
             fontSize:'0.62rem', letterSpacing:'0.15em', textTransform:'uppercase',
             color: featured ? 'var(--accent)' : 'var(--accent2)',
-            marginBottom:'0.7rem', fontFamily:'DM Mono, monospace',
+            marginBottom:'0.6rem', fontFamily:'DM Mono, monospace',
           }}>
             {project.eyebrow}
           </span>
           <h3 style={{
             fontFamily:'Syne, sans-serif', fontWeight:700,
-            fontSize: featured ? '1.5rem' : '1.1rem',
-            color:'var(--text)', marginBottom:'1rem',
+            fontSize: featured ? 'clamp(1.2rem, 3vw, 1.5rem)' : 'clamp(1.05rem, 2.5vw, 1.15rem)',
+            color:'var(--text)', marginBottom:'0.8rem',
             letterSpacing:'-0.02em', lineHeight:1.25,
           }}>
             {project.title}
@@ -80,7 +80,7 @@ function ProjectCard({ project, index }) {
                   {project.highlights.map((h, idx) => (
                     <li key={idx} style={{ display:'flex', alignItems:'flex-start', gap:'0.6rem', fontSize:'0.78rem', color:'var(--muted)', lineHeight:1.6 }}>
                       <span style={{ color:'var(--accent)', flexShrink:0, marginTop:'0.2rem' }}>▸</span>
-                      {h}
+                      <span>{h}</span>
                     </li>
                   ))}
                 </ul>
@@ -92,13 +92,13 @@ function ProjectCard({ project, index }) {
         {/* right col (or bottom) */}
         <div style={{
           display:'flex', flexDirection:'column', justifyContent:'flex-end', gap:'1.2rem',
-          marginTop: featured ? 0 : '1.5rem',
+          marginTop: featured ? 0 : 'auto',
         }}>
           {/* tags */}
           <div style={{ display:'flex', flexWrap:'wrap', gap:'0.45rem' }}>
             {project.tags.map(t => (
               <span key={t} style={{
-                fontSize:'0.62rem', padding:'0.25rem 0.75rem',
+                fontSize:'0.62rem', padding:'0.25rem 0.65rem',
                 borderRadius:'4px',
                 background:'rgba(139,124,248,0.08)',
                 border:'1px solid rgba(139,124,248,0.2)',
@@ -109,7 +109,7 @@ function ProjectCard({ project, index }) {
           </div>
 
           {/* links */}
-          <div style={{ display:'flex', gap:'0.8rem' }}>
+          <div style={{ display:'flex', gap:'0.8rem', flexWrap:'wrap' }}>
             {project.liveUrl && project.liveUrl !== '#' && (
               <a
                 href={project.liveUrl}
@@ -117,7 +117,7 @@ function ProjectCard({ project, index }) {
                 rel="noreferrer"
                 style={{
                   display:'inline-flex', alignItems:'center', gap:'0.4rem',
-                  padding:'0.55rem 1.2rem',
+                  padding:'0.55rem 1.1rem',
                   background:'var(--accent)', color:'#000',
                   borderRadius:'7px', fontSize:'0.72rem',
                   fontFamily:'Syne, sans-serif', fontWeight:600,
@@ -136,7 +136,7 @@ function ProjectCard({ project, index }) {
                 rel="noreferrer"
                 style={{
                   display:'inline-flex', alignItems:'center', gap:'0.4rem',
-                  padding:'0.55rem 1.2rem',
+                  padding:'0.55rem 1.1rem',
                   border:'1px solid var(--border2)', color:'var(--muted)',
                   borderRadius:'7px', fontSize:'0.72rem',
                   fontFamily:'DM Mono, monospace',
@@ -164,15 +164,11 @@ function ProjectCard({ project, index }) {
 
 export default function Projects() {
   return (
-    <section id="projects" style={{ padding:'6rem 3rem', zIndex:1, position:'relative' }}>
-      <div style={{ maxWidth:1100, margin:'0 auto' }}>
+    <section id="projects" className="section-wrapper">
+      <div className="section-inner">
         <SectionHeader num="03" title="Projects" />
 
-        <div style={{
-          display:'grid',
-          gridTemplateColumns:'1fr 1fr',
-          gap:'1.5rem',
-        }}>
+        <div className="projects-grid">
           {projects.map((p, i) => (
             <ProjectCard key={p.id} project={p} index={i} />
           ))}

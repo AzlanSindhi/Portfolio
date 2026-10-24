@@ -13,46 +13,50 @@ export default function Hero() {
       minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
-      padding: '8rem 3rem 5rem',
+      padding: 'clamp(6.5rem, 12vw, 8.5rem) var(--section-px) clamp(3.5rem, 6vw, 5rem)',
       position: 'relative',
       zIndex: 1,
       maxWidth: 1100,
       margin: '0 auto',
+      width: '100%',
     }}>
       {/* background orbs */}
       <div style={{
-        position:'absolute', width:700, height:700,
+        position:'absolute', width: 'min(700px, 90vw)', height: 'min(700px, 90vw)',
         background:'radial-gradient(circle, rgba(94,235,200,0.07) 0%, transparent 68%)',
-        borderRadius:'50%', top:-150, right:-200, pointerEvents:'none', filter:'blur(40px)',
+        borderRadius:'50%', top:-150, right:-100, pointerEvents:'none', filter:'blur(40px)',
       }} />
       <div style={{
-        position:'absolute', width:450, height:450,
+        position:'absolute', width: 'min(450px, 80vw)', height: 'min(450px, 80vw)',
         background:'radial-gradient(circle, rgba(139,124,248,0.07) 0%, transparent 68%)',
-        borderRadius:'50%', bottom:100, left:-100, pointerEvents:'none', filter:'blur(60px)',
+        borderRadius:'50%', bottom:100, left:-80, pointerEvents:'none', filter:'blur(60px)',
       }} />
 
-      <div style={{ position:'relative', zIndex:2, maxWidth:780 }}>
+      <div style={{ position:'relative', zIndex:2, maxWidth:780, width: '100%' }}>
         {/* status pill */}
         <motion.div {...fadeUp(0.1)} style={{
           display:'inline-flex', alignItems:'center', gap:'0.5rem',
-          fontSize:'0.68rem', letterSpacing:'0.15em', textTransform:'uppercase',
+          fontSize:'clamp(0.6rem, 1.8vw, 0.68rem)', letterSpacing:'0.12em', textTransform:'uppercase',
           color:'var(--accent)', border:'1px solid rgba(94,235,200,0.2)',
-          padding:'0.35rem 1rem', borderRadius:'100px', marginBottom:'2rem',
+          padding:'0.35rem 0.9rem', borderRadius:'100px', marginBottom:'clamp(1.2rem, 3vw, 2rem)',
           background:'rgba(94,235,200,0.04)', fontFamily:'DM Mono, monospace',
+          maxWidth: '100%',
         }}>
           <span style={{
             width:6, height:6, background:'var(--accent)', borderRadius:'50%',
-            animation:'pulse 2s infinite',
+            animation:'pulse 2s infinite', flexShrink: 0,
           }} />
-          {profile.status || "MSc Data Science · Kingston University"}
+          <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {profile.status || "MSc Data Science · Kingston University"}
+          </span>
         </motion.div>
 
         {/* name */}
         <motion.h1 {...fadeUp(0.2)} style={{
           fontFamily:'Syne, sans-serif', fontWeight:800,
-          fontSize:'clamp(3.2rem, 9vw, 7.5rem)',
-          lineHeight:0.93, letterSpacing:'-0.03em',
-          color:'var(--text)', marginBottom:'0.4rem',
+          fontSize:'clamp(2.6rem, 8.5vw, 7.5rem)',
+          lineHeight:0.95, letterSpacing:'-0.03em',
+          color:'var(--text)', marginBottom:'0.6rem',
         }}>
           Azlan
           <br />
@@ -67,7 +71,7 @@ export default function Hero() {
         <motion.p {...fadeUp(0.35)} style={{
           fontFamily:'Fraunces, serif', fontStyle:'italic',
           fontSize:'clamp(1rem, 2.5vw, 1.35rem)',
-          color:'var(--muted)', marginBottom:'1.5rem',
+          color:'var(--muted)', marginBottom:'1.25rem',
           letterSpacing:'0.01em', fontWeight:300,
         }}>
           {profile.title}
@@ -75,17 +79,17 @@ export default function Hero() {
 
         {/* desc */}
         <motion.p {...fadeUp(0.45)} style={{
-          maxWidth:460, color:'var(--muted)', fontSize:'0.85rem',
-          lineHeight:1.85, marginBottom:'3rem',
+          maxWidth:480, color:'var(--muted)', fontSize:'clamp(0.8rem, 2vw, 0.85rem)',
+          lineHeight:1.8, marginBottom:'clamp(1.8rem, 4vw, 3rem)',
         }}>
           {profile.tagline} Based in{' '}
           <span style={{ color:'var(--text)' }}>{profile.location}</span>.
         </motion.p>
 
         {/* CTAs */}
-        <motion.div {...fadeUp(0.55)} style={{ display:'flex', gap:'0.9rem', flexWrap:'wrap' }}>
+        <motion.div {...fadeUp(0.55)} className="hero-cta-group">
           <a href="#projects" style={{
-            padding:'0.85rem 2rem', background:'var(--accent)', color:'#000',
+            padding:'0.85rem 1.8rem', background:'var(--accent)', color:'#000',
             borderRadius:'8px', fontSize:'0.78rem', letterSpacing:'0.06em',
             fontWeight:600, fontFamily:'Syne, sans-serif',
             transition:'all 0.25s', display:'inline-flex', alignItems:'center', gap:'0.5rem',
@@ -96,7 +100,7 @@ export default function Hero() {
             View Projects →
           </a>
           <a href="/cv.html" target="_blank" rel="noopener noreferrer" style={{
-            padding:'0.85rem 2rem', background:'rgba(139,124,248,0.1)', color:'#a49cf8',
+            padding:'0.85rem 1.8rem', background:'rgba(139,124,248,0.1)', color:'#a49cf8',
             borderRadius:'8px', fontSize:'0.78rem', letterSpacing:'0.06em',
             border:'1px solid rgba(139,124,248,0.3)', transition:'all 0.25s',
             display:'inline-flex', alignItems:'center', gap:'0.5rem',
@@ -108,7 +112,7 @@ export default function Hero() {
             View CV ↗
           </a>
           <a href={`mailto:${profile.email}`} style={{
-            padding:'0.85rem 2rem', background:'transparent', color:'var(--muted)',
+            padding:'0.85rem 1.8rem', background:'transparent', color:'var(--muted)',
             borderRadius:'8px', fontSize:'0.78rem', letterSpacing:'0.06em',
             border:'1px solid var(--border2)', transition:'all 0.25s',
             display:'inline-flex', alignItems:'center', gap:'0.5rem',
@@ -123,6 +127,7 @@ export default function Hero() {
 
         {/* scroll indicator */}
         <motion.div
+          className="hero-scroll-indicator"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4 }}
           style={{
             position:'absolute', bottom:'-5rem', left:0,

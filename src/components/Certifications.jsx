@@ -13,21 +13,14 @@ export default function Certifications() {
   return (
     <section
       id="certifications"
+      className="section-wrapper"
       style={{
-        padding: '6rem 3rem',
-        position: 'relative',
-        zIndex: 1,
         background: 'var(--bg2)',
         borderTop: '1px solid var(--border)',
         borderBottom: '1px solid var(--border)',
       }}
     >
-      <div
-        style={{
-          maxWidth: '1100px',
-          margin: '0 auto',
-        }}
-      >
+      <div className="section-inner">
         <SectionHeader
           num="04"
           title="Certifications & Credentials"
@@ -49,13 +42,7 @@ export default function Certifications() {
             Certifications coming soon.
           </p>
         ) : (
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-              gap: '1.5rem',
-            }}
-          >
+          <div className="certs-grid">
             {certifications.map((cert, i) => (
               <motion.div
                 key={i}
@@ -77,10 +64,10 @@ export default function Certifications() {
                   background: 'var(--surface)',
                   border: '1px solid var(--border)',
                   borderRadius: '14px',
-                  padding: '1.5rem 2rem',
+                  padding: 'clamp(1.1rem, 2.5vw, 1.5rem) clamp(1rem, 3vw, 1.8rem)',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '1.5rem',
+                  gap: 'clamp(0.8rem, 2.5vw, 1.4rem)',
                   cursor: 'pointer',
                   transition: 'border-color 0.25s, box-shadow 0.25s',
                 }}
@@ -88,8 +75,8 @@ export default function Certifications() {
                 {/* Icon Badge */}
                 <div
                   style={{
-                    width: '46px',
-                    height: '46px',
+                    width: '44px',
+                    height: '44px',
                     borderRadius: '10px',
                     background: 'var(--bg2)',
                     border: '1px solid var(--border2)',
@@ -104,47 +91,48 @@ export default function Certifications() {
                 </div>
 
                 {/* Certificate Info */}
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <span
                     style={{
                       display: 'block',
                       marginBottom: '0.2rem',
                       fontFamily: 'Syne, sans-serif',
                       fontWeight: 600,
-                      fontSize: '0.92rem',
+                      fontSize: '0.9rem',
                       color: 'var(--text)',
+                      wordBreak: 'break-word',
                     }}
                   >
                     {cert.title}
                   </span>
 
-                  <span
-                    style={{
-                      fontSize: '0.72rem',
-                      color: 'var(--muted)',
-                    }}
-                  >
-                    {cert.issuer}
-                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    <span
+                      style={{
+                        fontSize: '0.72rem',
+                        color: 'var(--muted)',
+                      }}
+                    >
+                      {cert.issuer}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: '0.65rem',
+                        color: 'var(--dim)',
+                        letterSpacing: '0.05em',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {cert.date}
+                    </span>
+                  </div>
                 </div>
-
-                {/* Date */}
-                <span
-                  style={{
-                    fontSize: '0.65rem',
-                    color: 'var(--dim)',
-                    letterSpacing: '0.05em',
-                    whiteSpace: 'nowrap',
-                  }}
-                >
-                  {cert.date}
-                </span>
 
                 <span
                   style={{
                     color: 'var(--accent)',
-                    fontSize: '0.9rem',
-                    marginLeft: '0.5rem',
+                    fontSize: '0.85rem',
+                    flexShrink: 0,
                   }}
                 >
                   👁
@@ -166,13 +154,13 @@ export default function Certifications() {
             style={{
               position: 'fixed',
               inset: 0,
-              background: 'rgba(7, 9, 16, 0.85)',
-              backdropFilter: 'blur(8px)',
+              background: 'rgba(7, 9, 16, 0.88)',
+              backdropFilter: 'blur(10px)',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               zIndex: 10000,
-              padding: '2rem',
+              padding: 'clamp(0.75rem, 3vw, 2rem)',
             }}
           >
             {/* Modal Container */}
@@ -188,12 +176,12 @@ export default function Certifications() {
                 borderRadius: '16px',
                 width: '100%',
                 maxWidth: '850px',
-                maxHeight: '90vh',
+                maxHeight: '92vh',
                 overflow: 'hidden',
                 position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
-                boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
+                boxShadow: '0 20px 50px rgba(0,0,0,0.6)',
               }}
             >
               {/* Top Accent Line */}
@@ -207,21 +195,23 @@ export default function Certifications() {
               {/* Modal Header */}
               <div
                 style={{
-                  padding: '1.2rem 1.8rem',
+                  padding: '1rem clamp(1rem, 3vw, 1.8rem)',
                   borderBottom: '1px solid var(--border)',
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
+                  gap: '1rem',
                 }}
               >
-                <div>
+                <div style={{ minWidth: 0 }}>
                   <h3
                     style={{
                       fontFamily: 'Syne, sans-serif',
                       fontWeight: 700,
-                      fontSize: '1.1rem',
+                      fontSize: 'clamp(0.95rem, 2.5vw, 1.15rem)',
                       color: 'var(--text)',
-                      lineHeight: 1.2,
+                      lineHeight: 1.25,
+                      wordBreak: 'break-word',
                     }}
                   >
                     {selectedCert.title}
@@ -250,6 +240,7 @@ export default function Certifications() {
                     justifyContent: 'center',
                     cursor: 'pointer',
                     fontSize: '1rem',
+                    flexShrink: 0,
                     transition: 'all 0.2s',
                   }}
                   onMouseEnter={(e) => {
@@ -268,7 +259,7 @@ export default function Certifications() {
               {/* Modal Body / Viewer */}
               <div
                 style={{
-                  padding: '1.8rem',
+                  padding: 'clamp(1rem, 2.5vw, 1.8rem)',
                   background: 'rgba(7, 9, 16, 0.4)',
                   display: 'flex',
                   flexDirection: 'column',
@@ -276,16 +267,16 @@ export default function Certifications() {
                   justifyContent: 'center',
                   overflowY: 'auto',
                   flex: 1,
-                  minHeight: '320px',
+                  minHeight: '260px',
                 }}
               >
                 {selectedCert.fileUrl && selectedCert.fileType === 'pdf' ? (
-                  <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                     <iframe
                       src={selectedCert.fileUrl}
                       width="100%"
-                      height="480px"
                       style={{
+                        height: 'clamp(280px, 45vh, 480px)',
                         border: '1px solid var(--border2)',
                         borderRadius: '8px',
                         background: 'var(--bg)',
@@ -310,7 +301,7 @@ export default function Certifications() {
                     alt={selectedCert.title}
                     style={{
                       maxWidth: '100%',
-                      maxHeight: '480px',
+                      maxHeight: 'clamp(280px, 45vh, 480px)',
                       objectFit: 'contain',
                       borderRadius: '8px',
                       boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
@@ -319,7 +310,7 @@ export default function Certifications() {
                 ) : (
                   <div style={{
                     textAlign: 'center',
-                    padding: '2.5rem 1.5rem',
+                    padding: 'clamp(1.5rem, 3vw, 2.5rem) 1rem',
                     maxWidth: '480px',
                     display: 'flex',
                     flexDirection: 'column',
@@ -327,18 +318,18 @@ export default function Certifications() {
                     gap: '1rem',
                   }}>
                     <div style={{
-                      width: '72px', height: '72px', borderRadius: '18px',
+                      width: '64px', height: '64px', borderRadius: '16px',
                       background: 'var(--surface)', border: '1px solid var(--border2)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: '2.2rem',
+                      fontSize: '2rem',
                     }}>
                       {selectedCert.icon}
                     </div>
                     <div>
-                      <h4 style={{ fontFamily: 'Syne, sans-serif', color: 'var(--text)', fontSize: '1.25rem', marginBottom: '0.35rem' }}>
+                      <h4 style={{ fontFamily: 'Syne, sans-serif', color: 'var(--text)', fontSize: 'clamp(1.1rem, 3vw, 1.25rem)', marginBottom: '0.35rem' }}>
                         {selectedCert.title}
                       </h4>
-                      <p style={{ color: 'var(--muted)', fontSize: '0.85rem' }}>
+                      <p style={{ color: 'var(--muted)', fontSize: '0.82rem' }}>
                         Issued by <strong style={{ color: 'var(--text)' }}>{selectedCert.issuer}</strong> · {selectedCert.date}
                       </p>
                     </div>
@@ -351,7 +342,7 @@ export default function Certifications() {
                         target="_blank"
                         rel="noreferrer"
                         style={{
-                          marginTop: '0.5rem',
+                          marginTop: '0.4rem',
                           padding: '0.65rem 1.4rem',
                           background: 'var(--accent)',
                           color: '#000',
@@ -375,12 +366,14 @@ export default function Certifications() {
               {/* Modal Footer */}
               <div
                 style={{
-                  padding: '1rem 1.8rem',
+                  padding: '0.85rem clamp(1rem, 3vw, 1.8rem)',
                   borderTop: '1px solid var(--border)',
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   background: 'var(--bg2)',
+                  flexWrap: 'wrap',
+                  gap: '0.8rem',
                 }}
               >
                 {selectedCert.url && selectedCert.url !== '#' ? (
@@ -403,7 +396,7 @@ export default function Certifications() {
                   <span />
                 )}
 
-                <div style={{ display: 'flex', gap: '0.8rem' }}>
+                <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap' }}>
                   {selectedCert.fileUrl && (
                     <a
                       href={selectedCert.fileUrl}

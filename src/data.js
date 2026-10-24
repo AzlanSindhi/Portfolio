@@ -26,21 +26,7 @@ export const socials = [
     url: "https://github.com/azlansindhi",
     icon: "🐙",
     color: "#6e7681",
-  },
-  {
-    platform: "LeetCode",
-    handle: "@azlansindhi",
-    url: "https://leetcode.com/u/azlansindhi",
-    icon: "⚡",
-    color: "#FFA116",
-  },
-  {
-    platform: "HackerRank",
-    handle: "@azlansindhi",
-    url: "https://hackerrank.com/profile/azlansindhi",
-    icon: "🟩",
-    color: "#00EA64",
-  },
+  }
 ];
 
 export const skills = {
@@ -132,28 +118,6 @@ export const projects = [
   },
   {
     id: 3,
-    title: "IntervAI — AI-Powered Mock Interview Platform",
-    eyebrow: "Featured Project",
-    description:
-      "An AI-powered mock interview platform where users upload study material, receive personalized interview questions, answer within a timed interface, and receive detailed feedback on confidence, accuracy, and overall performance.",
-    tags: ["React", "Vite", "Node.js", "Express", "MongoDB", "OpenAI API"],
-    liveUrl: "#",
-    githubUrl: "https://github.com/azlansindhi/IntervAI",
-    featured: false,
-  },
-  {
-    id: 4,
-    title: "DataGenie — AI-Powered Analytics Platform",
-    eyebrow: "MERN Stack & Power BI",
-    description:
-      "An AI-powered analytics platform that transforms uploaded datasets into interactive dashboards and enables users to ask natural language questions about their data.",
-    tags: ["MongoDB", "Express", "React", "Node.js", "Power BI", "AI APIs"],
-    liveUrl: "#",
-    githubUrl: "https://github.com/azlansindhi/DataGenie",
-    featured: false,
-  },
-  {
-    id: 5,
     title: "FarmBasket — Agricultural E-Commerce",
     eyebrow: "Full-Stack Web App",
     description:
@@ -247,7 +211,7 @@ export const experience = [
     type: "Healthcare & Booking",
     duration: "March 2026 – Present",
     current: true,
-    liveUrl: "https://asmirawellness.com",
+    liveUrl: "https://www.asmira.in",
     description:
       "Developing and maintaining a responsive client booking and practice-management platform.",
     highlights: [

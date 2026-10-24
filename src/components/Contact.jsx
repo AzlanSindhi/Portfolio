@@ -27,11 +27,11 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" style={{ padding:'6rem 3rem', zIndex:1, position:'relative' }}>
-      <div style={{ maxWidth:1100, margin:'0 auto' }}>
+    <section id="contact" className="section-wrapper">
+      <div className="section-inner">
         <SectionHeader num="05" title="Get In Touch" />
 
-        <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'5rem', alignItems:'start' }}>
+        <div className="contact-grid">
           {/* left */}
           <motion.div
             initial={{ opacity:0, y:20 }}
@@ -40,8 +40,8 @@ export default function Contact() {
           >
             <h3 style={{
               fontFamily:'Fraunces, serif', fontStyle:'italic',
-              fontSize:'clamp(1.8rem, 3.5vw, 3rem)',
-              color:'var(--text)', lineHeight:1.2, marginBottom:'1.5rem',
+              fontSize:'clamp(1.6rem, 3.8vw, 3rem)',
+              color:'var(--text)', lineHeight:1.2, marginBottom:'1.25rem',
               fontWeight:300,
             }}>
               Let's work{' '}
@@ -57,20 +57,20 @@ export default function Contact() {
               I'm open to full-time opportunities and interesting project collaborations.
               Have a project in mind or want to discuss how I can contribute? Feel free to reach out.
             </p>
-            <div style={{ display:'flex', flexDirection:'column', gap:'0.7rem' }}>
+            <div style={{ display:'flex', flexDirection:'column', gap:'0.85rem' }}>
               {[
                 { icon:'📧', label:'Email', val: profile.email, href:`mailto:${profile.email}` },
                 { icon:'📍', label:'Location', val: profile.location },
                 { icon:'📱', label:'Phone', val: profile.phone },
               ].map(item => (
                 <div key={item.label} style={{ display:'flex', alignItems:'center', gap:'0.8rem' }}>
-                  <span style={{ fontSize:'1rem' }}>{item.icon}</span>
-                  <div>
+                  <span style={{ fontSize:'1rem', flexShrink: 0 }}>{item.icon}</span>
+                  <div style={{ minWidth: 0 }}>
                     <span style={{ fontSize:'0.62rem', color:'var(--muted)', letterSpacing:'0.1em', textTransform:'uppercase', display:'block' }}>
                       {item.label}
                     </span>
                     {item.href ? (
-                      <a href={item.href} style={{ color:'var(--accent)', fontSize:'0.82rem' }}>
+                      <a href={item.href} style={{ color:'var(--accent)', fontSize:'0.82rem', wordBreak: 'break-all' }}>
                         {item.val}
                       </a>
                     ) : (
@@ -91,7 +91,7 @@ export default function Contact() {
             transition={{ delay:0.15 }}
             style={{ display:'flex', flexDirection:'column', gap:'1.1rem' }}
           >
-            <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1rem' }}>
+            <div className="contact-form-row">
               {[
                 { name:'name', label:'Your Name', placeholder:'Azlan Sindhi' },
                 { name:'email', label:'Email Address', placeholder:'hello@email.com', type:'email' },
@@ -143,7 +143,7 @@ export default function Contact() {
                 border:'none', borderRadius:'8px',
                 fontFamily:'Syne, sans-serif', fontWeight:700,
                 fontSize:'0.85rem', letterSpacing:'0.04em',
-                cursor:'none', transition:'background 0.3s',
+                cursor:'pointer', transition:'background 0.3s',
                 boxShadow: sent ? '0 0 30px rgba(139,124,248,0.3)' : 'none',
               }}
             >

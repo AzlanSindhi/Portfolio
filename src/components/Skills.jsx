@@ -6,11 +6,16 @@ const Tag = ({ label, variant = 'soft' }) => (
   <motion.span
     whileHover={{ scale:1.05 }}
     style={{
-      padding:'0.45rem 1.1rem',
+      padding:'0.4rem 0.95rem',
       borderRadius:'100px',
-      fontSize:'0.75rem',
+      fontSize:'clamp(0.7rem, 2vw, 0.75rem)',
       fontFamily:'DM Mono, monospace',
       cursor:'default',
+      display:'inline-block',
+      maxWidth:'100%',
+      overflow:'hidden',
+      textOverflow:'ellipsis',
+      whiteSpace:'nowrap',
       ...(variant === 'soft' ? {
         background:'var(--surface)',
         border:'1px solid var(--border)',
@@ -28,14 +33,13 @@ const Tag = ({ label, variant = 'soft' }) => (
 
 export default function Skills() {
   return (
-    <section id="skills" style={{
-      padding:'6rem 3rem', zIndex:1, position:'relative',
+    <section id="skills" className="section-wrapper" style={{
       background:'var(--bg2)', borderTop:'1px solid var(--border)', borderBottom:'1px solid var(--border)',
     }}>
-      <div style={{ maxWidth:1100, margin:'0 auto' }}>
+      <div className="section-inner">
         <SectionHeader num="02" title="Skills & Tech" />
 
-        <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'4rem' }}>
+        <div className="skills-grid">
           <div>
             <p style={{
               fontSize:'0.65rem', letterSpacing:'0.15em', textTransform:'uppercase',
@@ -43,7 +47,7 @@ export default function Skills() {
             }}>
               ✦ Professional & Transferable Skills
             </p>
-            <div style={{ display:'flex', flexWrap:'wrap', gap:'0.65rem' }}>
+            <div style={{ display:'flex', flexWrap:'wrap', gap:'0.55rem' }}>
               {skills.soft.map((s, i) => (
                 <motion.div
                   key={s}
@@ -74,7 +78,7 @@ export default function Skills() {
                   }}>
                     {cat.category}
                   </p>
-                  <div style={{ display:'flex', flexWrap:'wrap', gap:'0.5rem' }}>
+                  <div style={{ display:'flex', flexWrap:'wrap', gap:'0.45rem' }}>
                     {cat.skills.map((s, i) => (
                       <motion.div
                         key={s}
@@ -95,21 +99,21 @@ export default function Skills() {
 
         {/* scrolling ticker */}
         <div style={{
-          marginTop:'4rem', overflow:'hidden',
+          marginTop:'clamp(2.5rem, 5vw, 4rem)', overflow:'hidden',
           borderTop:'1px solid var(--border)', borderBottom:'1px solid var(--border)',
-          padding:'1rem 0', position:'relative',
+          padding:'0.85rem 0', position:'relative',
         }}>
           <motion.div
             animate={{ x: [0, -2000] }}
             transition={{ duration:30, repeat:Infinity, ease:'linear' }}
-            style={{ display:'flex', gap:'3rem', whiteSpace:'nowrap', width:'max-content' }}
+            style={{ display:'flex', gap:'2.5rem', whiteSpace:'nowrap', width:'max-content' }}
           >
             {[...skills.tech, ...skills.tech, ...skills.tech].map((s, i) => (
               <span key={i} style={{
                 color:'var(--dim)', fontSize:'0.72rem', letterSpacing:'0.1em',
                 textTransform:'uppercase', fontFamily:'DM Mono, monospace',
               }}>
-                {s} <span style={{ color:'var(--accent)', margin:'0 0.5rem' }}>✦</span>
+                {s} <span style={{ color:'var(--accent)', margin:'0 0.4rem' }}>✦</span>
               </span>
             ))}
           </motion.div>
