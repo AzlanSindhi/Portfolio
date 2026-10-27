@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { profile } from '../data';
+import ThemeToggle from './ThemeToggle';
+import { useTheme } from '../context/useTheme';
 
 const links = ['About', 'Skills', 'Experience', 'Projects', 'Certifications', 'Contact'];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -35,10 +38,11 @@ export default function Navbar() {
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 500,
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           padding: '1.1rem var(--section-px)',
-          background: (scrolled || mobileMenuOpen) ? 'rgba(7,9,16,0.95)' : 'transparent',
+          background: (scrolled || mobileMenuOpen) ? 'var(--nav-bg)' : 'transparent',
           backdropFilter: (scrolled || mobileMenuOpen) ? 'blur(20px)' : 'none',
           borderBottom: (scrolled || mobileMenuOpen) ? '1px solid var(--border)' : '1px solid transparent',
-          transition: 'background 0.3s ease, border-color 0.3s ease',
+          boxShadow: scrolled ? 'var(--shadow-sm)' : 'none',
+          transition: 'background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
         }}
       >
         <a href="#hero" style={{
@@ -55,9 +59,10 @@ export default function Navbar() {
           {links.map(l => (
             <li key={l}>
               <a href={`#${l.toLowerCase()}`} style={{
-                color:'var(--muted)', fontSize:'0.68rem', letterSpacing:'0.1em',
+                color:'var(--muted)', fontSize:'0.72rem', letterSpacing:'0.1em',
                 textTransform:'uppercase', transition:'color 0.2s',
                 fontFamily:'DM Mono, monospace', textDecoration:'none',
+                fontWeight: 500,
               }}
                 onMouseEnter={e => e.target.style.color = 'var(--accent)'}
                 onMouseLeave={e => e.target.style.color = 'var(--muted)'}
@@ -66,47 +71,61 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Desktop CTA */}
+        {/* Desktop CTA & Theme Toggle */}
         <div className="nav-desktop-cta">
+          <ThemeToggle />
           <a href={`mailto:${profile.email}`} style={{
-            padding:'0.5rem 1.2rem',
-            border:'1px solid var(--border2)',
+            padding:'0.5rem 1.25rem',
+            border:'1px solid var(--border)',
             borderRadius:'6px',
-            color:'var(--muted)',
-            fontSize:'0.72rem',
+            color:'var(--btn-secondary-color)',
+            background:'var(--btn-secondary-bg)',
+            fontSize:'0.74rem',
             letterSpacing:'0.08em',
-            transition:'all 0.2s',
+            transition:'all 0.25s',
             fontFamily:'DM Mono, monospace',
+            fontWeight: 500,
             textDecoration:'none',
           }}
-            onMouseEnter={e => { e.target.style.borderColor='var(--accent)'; e.target.style.color='var(--accent)'; }}
-            onMouseLeave={e => { e.target.style.borderColor='var(--border2)'; e.target.style.color='var(--muted)'; }}
+            onMouseEnter={e => {
+              e.target.style.borderColor='var(--accent)';
+              e.target.style.background='var(--accent)';
+              e.target.style.color='var(--btn-primary-text)';
+            }}
+            onMouseLeave={e => {
+              e.target.style.borderColor='var(--border)';
+              e.target.style.background='var(--btn-secondary-bg)';
+              e.target.style.color='var(--btn-secondary-color)';
+            }}
           >
             Hire Me
           </a>
         </div>
 
-        {/* Mobile Toggle Button */}
-        <button
-          className="nav-mobile-toggle"
-          aria-label="Toggle navigation menu"
-          onClick={() => setMobileMenuOpen(prev => !prev)}
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            {mobileMenuOpen ? (
-              <>
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </>
-            ) : (
-              <>
-                <line x1="4" y1="7" x2="20" y2="7" />
-                <line x1="4" y1="12" x2="20" y2="12" />
-                <line x1="4" y1="17" x2="20" y2="17" />
-              </>
-            )}
-          </svg>
-        </button>
+        {/* Mobile Controls (Theme Toggle + Hamburger) */}
+        <div className="nav-mobile-controls">
+          <ThemeToggle size="small" />
+          <button
+            className="nav-mobile-toggle"
+            aria-label="Toggle navigation menu"
+            onClick={() => setMobileMenuOpen(prev => !prev)}
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              {mobileMenuOpen ? (
+                <>
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </>
+              ) : (
+                <>
+                  <line x1="4" y1="7" x2="20" y2="7" />
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <line x1="4" y1="17" x2="20" y2="17" />
+                </>
+              )}
+            </svg>
+          </button>
+        </div>
       </motion.nav>
 
       {/* Mobile Drawer Dropdown */}
@@ -122,7 +141,7 @@ export default function Navbar() {
               top: '60px',
               left: 0,
               right: 0,
-              background: 'rgba(11, 13, 20, 0.98)',
+              background: 'var(--mobile-menu-bg)',
               backdropFilter: 'blur(25px)',
               borderBottom: '1px solid var(--border)',
               zIndex: 499,
@@ -130,7 +149,7 @@ export default function Navbar() {
               display: 'flex',
               flexDirection: 'column',
               gap: '1.2rem',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.6)',
+              boxShadow: 'var(--mobile-menu-shadow)',
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
@@ -141,21 +160,41 @@ export default function Navbar() {
                   onClick={() => setMobileMenuOpen(false)}
                   style={{
                     color: 'var(--text)',
-                    fontSize: '0.85rem',
+                    fontSize: '0.88rem',
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
                     fontFamily: 'DM Mono, monospace',
-                    padding: '0.6rem 0',
-                    borderBottom: '1px solid rgba(255,255,255,0.04)',
+                    fontWeight: 500,
+                    padding: '0.65rem 0',
+                    borderBottom: '1px solid var(--border)',
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
                   }}
                 >
                   <span>{l}</span>
-                  <span style={{ color: 'var(--dim)', fontSize: '0.75rem' }}>→</span>
+                  <span style={{ color: 'var(--accent)', fontSize: '0.85rem' }}>→</span>
                 </a>
               ))}
+            </div>
+
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '0.5rem 0',
+              borderBottom: '1px solid var(--border)',
+            }}>
+              <span style={{
+                color: 'var(--muted)',
+                fontSize: '0.78rem',
+                fontFamily: 'DM Mono, monospace',
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+              }}>
+                Theme: <strong style={{ color: 'var(--text)' }}>{theme === 'dark' ? 'Dark' : 'Light'}</strong>
+              </span>
+              <ThemeToggle size="small" />
             </div>
 
             <a
@@ -163,15 +202,16 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
               style={{
                 marginTop: '0.5rem',
-                padding: '0.8rem',
+                padding: '0.85rem',
                 textAlign: 'center',
                 background: 'var(--accent)',
-                color: '#000',
+                color: 'var(--btn-primary-text)',
                 borderRadius: '8px',
                 fontSize: '0.85rem',
                 fontFamily: 'Syne, sans-serif',
                 fontWeight: 700,
                 letterSpacing: '0.04em',
+                boxShadow: 'var(--btn-primary-shadow)',
               }}
             >
               Hire Me →

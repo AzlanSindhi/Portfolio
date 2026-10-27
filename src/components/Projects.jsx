@@ -11,7 +11,7 @@ function ProjectCard({ project, index }) {
       whileInView={{ opacity:1, y:0 }}
       viewport={{ once:true }}
       transition={{ delay: index * 0.1, duration:0.6, ease:[0.16,1,0.3,1] }}
-      whileHover={{ y:-5 }}
+      whileHover={{ y:-5, boxShadow: 'var(--card-shadow-hover)' }}
       style={{
         background:'var(--surface)',
         border:'1px solid var(--border)',
@@ -22,22 +22,23 @@ function ProjectCard({ project, index }) {
         display:'flex',
         flexDirection:'column',
         gridColumn: featured ? '1 / -1' : 'auto',
+        boxShadow: 'var(--card-shadow)',
         transition:'border-color 0.3s, box-shadow 0.3s',
       }}
       onHoverStart={e => {
-        e.target.style && (e.target.style.borderColor = 'rgba(94,235,200,0.3)');
+        e.target.style && (e.target.style.borderColor = 'var(--accent)');
       }}
     >
       {/* glow */}
       <div style={{
         position:'absolute', inset:0, pointerEvents:'none',
-        background:'radial-gradient(circle at 80% 10%, rgba(94,235,200,0.05), transparent 55%)',
+        background:'radial-gradient(circle at 80% 10%, var(--glow), transparent 55%)',
       }} />
 
       {/* top accent line */}
       {featured && (
         <div style={{
-          position:'absolute', top:0, left:0, right:0, height:'2px',
+          position:'absolute', top:0, left:0, right:0, height:'3px',
           background:'linear-gradient(90deg, var(--accent), var(--accent2))',
         }} />
       )}
@@ -51,9 +52,9 @@ function ProjectCard({ project, index }) {
         {/* left col */}
         <div style={{ display:'flex', flexDirection:'column' }}>
           <span style={{
-            fontSize:'0.62rem', letterSpacing:'0.15em', textTransform:'uppercase',
+            fontSize:'0.66rem', letterSpacing:'0.15em', textTransform:'uppercase',
             color: featured ? 'var(--accent)' : 'var(--accent2)',
-            marginBottom:'0.6rem', fontFamily:'DM Mono, monospace',
+            marginBottom:'0.6rem', fontFamily:'DM Mono, monospace', fontWeight: 600,
           }}>
             {project.eyebrow}
           </span>
@@ -66,19 +67,19 @@ function ProjectCard({ project, index }) {
             {project.title}
           </h3>
           {!featured && (
-            <p style={{ fontSize:'0.8rem', color:'var(--muted)', lineHeight:1.8, flex:1 }}>
+            <p style={{ fontSize:'0.82rem', color:'var(--muted)', lineHeight:1.8, flex:1 }}>
               {project.description}
             </p>
           )}
           {featured && (
             <div style={{ flex: 1 }}>
-              <p style={{ fontSize:'0.85rem', color:'var(--muted)', lineHeight:1.85, marginBottom: project.highlights ? '0.9rem' : 0 }}>
+              <p style={{ fontSize:'0.86rem', color:'var(--muted)', lineHeight:1.85, marginBottom: project.highlights ? '0.9rem' : 0 }}>
                 {project.description}
               </p>
               {project.highlights && (
                 <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:'0.45rem', padding:0, margin:0 }}>
                   {project.highlights.map((h, idx) => (
-                    <li key={idx} style={{ display:'flex', alignItems:'flex-start', gap:'0.6rem', fontSize:'0.78rem', color:'var(--muted)', lineHeight:1.6 }}>
+                    <li key={idx} style={{ display:'flex', alignItems:'flex-start', gap:'0.6rem', fontSize:'0.8rem', color:'var(--muted)', lineHeight:1.6 }}>
                       <span style={{ color:'var(--accent)', flexShrink:0, marginTop:'0.2rem' }}>▸</span>
                       <span>{h}</span>
                     </li>
@@ -98,12 +99,12 @@ function ProjectCard({ project, index }) {
           <div style={{ display:'flex', flexWrap:'wrap', gap:'0.45rem' }}>
             {project.tags.map(t => (
               <span key={t} style={{
-                fontSize:'0.62rem', padding:'0.25rem 0.65rem',
+                fontSize:'0.64rem', padding:'0.28rem 0.7rem',
                 borderRadius:'4px',
-                background:'rgba(139,124,248,0.08)',
-                border:'1px solid rgba(139,124,248,0.2)',
-                color:'#a49cf8', letterSpacing:'0.04em',
-                fontFamily:'DM Mono, monospace',
+                background:'var(--tag-tech-bg)',
+                border:'1px solid var(--tag-tech-border)',
+                color:'var(--tag-tech-color)', letterSpacing:'0.04em',
+                fontFamily:'DM Mono, monospace', fontWeight: 500,
               }}>{t}</span>
             ))}
           </div>
@@ -117,14 +118,15 @@ function ProjectCard({ project, index }) {
                 rel="noreferrer"
                 style={{
                   display:'inline-flex', alignItems:'center', gap:'0.4rem',
-                  padding:'0.55rem 1.1rem',
-                  background:'var(--accent)', color:'#000',
-                  borderRadius:'7px', fontSize:'0.72rem',
+                  padding:'0.58rem 1.2rem',
+                  background:'var(--accent)', color:'var(--btn-primary-text)',
+                  borderRadius:'7px', fontSize:'0.74rem',
                   fontFamily:'Syne, sans-serif', fontWeight:600,
                   transition:'all 0.2s',
+                  boxShadow:'var(--btn-primary-shadow)',
                 }}
-                onMouseEnter={e => e.currentTarget.style.boxShadow='0 0 20px rgba(94,235,200,0.35)'}
-                onMouseLeave={e => e.currentTarget.style.boxShadow='none'}
+                onMouseEnter={e => e.currentTarget.style.boxShadow='var(--btn-primary-shadow-hover)'}
+                onMouseLeave={e => e.currentTarget.style.boxShadow='var(--btn-primary-shadow)'}
               >
                 Live Demo ↗
               </a>
@@ -136,21 +138,22 @@ function ProjectCard({ project, index }) {
                 rel="noreferrer"
                 style={{
                   display:'inline-flex', alignItems:'center', gap:'0.4rem',
-                  padding:'0.55rem 1.1rem',
-                  border:'1px solid var(--border2)', color:'var(--muted)',
-                  borderRadius:'7px', fontSize:'0.72rem',
-                  fontFamily:'DM Mono, monospace',
+                  padding:'0.58rem 1.2rem',
+                  border:'1px solid var(--border)', color:'var(--text)',
+                  background:'var(--bg2)',
+                  borderRadius:'7px', fontSize:'0.74rem',
+                  fontFamily:'DM Mono, monospace', fontWeight: 500,
                   transition:'all 0.2s',
                 }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor='var(--accent)'; e.currentTarget.style.color='var(--accent)'; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor='var(--border2)'; e.currentTarget.style.color='var(--muted)'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.color='var(--text)'; }}
               >
                 GitHub →
               </a>
             )}
             {(project.liveUrl === '#' && (!project.githubUrl || project.githubUrl === '#')) && (
               <span style={{
-                fontSize:'0.68rem', color:'var(--dim)',
+                fontSize:'0.7rem', color:'var(--dim)',
               }}>
                 Repository / Demo upon request
               </span>
@@ -164,7 +167,7 @@ function ProjectCard({ project, index }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="section-wrapper">
+    <section id="projects" className="section-wrapper" style={{ background: 'var(--bg)' }}>
       <div className="section-inner">
         <SectionHeader num="03" title="Projects" />
 

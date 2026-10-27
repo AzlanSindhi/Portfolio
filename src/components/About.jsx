@@ -11,7 +11,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="section-wrapper">
+    <section id="about" className="section-wrapper" style={{ background: 'var(--bg)' }}>
       <div className="section-inner">
         <SectionHeader num="01" title="About Me" />
 
@@ -25,7 +25,7 @@ export default function About() {
               style={{
                 fontFamily:'Fraunces, serif', fontStyle:'italic',
                 fontSize:'clamp(1.05rem, 3vw, 1.25rem)', color:'var(--text)', lineHeight:1.7,
-                marginBottom:'1.5rem', fontWeight:300,
+                marginBottom:'1.5rem', fontWeight:400,
               }}
             >
               "{profile.summary}"
@@ -36,15 +36,15 @@ export default function About() {
               transition={{ delay:0.2 }}
             >
               <p style={{
-                color:'var(--muted)', fontSize:'0.82rem', marginBottom:'0.8rem',
+                color:'var(--muted)', fontSize:'0.84rem', marginBottom:'0.8rem',
                 wordBreak: 'break-word',
               }}>
                 📍 {profile.location} &nbsp;·&nbsp; 📧{' '}
-                <a href={`mailto:${profile.email}`} style={{ color:'var(--accent)' }}>
+                <a href={`mailto:${profile.email}`} style={{ color:'var(--accent)', fontWeight: 500 }}>
                   {profile.email}
                 </a>
               </p>
-              <p style={{ color:'var(--muted)', fontSize:'0.82rem' }}>
+              <p style={{ color:'var(--muted)', fontSize:'0.84rem' }}>
                 📞 {profile.phone}
               </p>
             </motion.div>
@@ -52,8 +52,9 @@ export default function About() {
             {/* education */}
             <div style={{ marginTop:'2.5rem' }}>
               <p style={{
-                fontSize:'0.65rem', letterSpacing:'0.15em', textTransform:'uppercase',
+                fontSize:'0.68rem', letterSpacing:'0.15em', textTransform:'uppercase',
                 color:'var(--accent)', marginBottom:'1.2rem', fontFamily:'DM Mono, monospace',
+                fontWeight: 600,
               }}>Education</p>
               {education.map((e, i) => (
                 <motion.div
@@ -64,23 +65,24 @@ export default function About() {
                   transition={{ delay: i * 0.1 }}
                   style={{
                     padding:'clamp(1rem, 2.5vw, 1.2rem) clamp(1rem, 3vw, 1.5rem)',
-                    background:'var(--surface)',
+                    background:'var(--bg2)',
                     border:'1px solid var(--border)',
                     borderRadius:'10px',
                     marginBottom:'0.8rem',
-                    borderLeft:'2px solid var(--accent2)',
+                    borderLeft:'3px solid var(--accent2)',
+                    boxShadow: '0 2px 8px rgba(53, 53, 53, 0.03)',
                   }}
                 >
                   <span style={{
                     fontFamily:'Syne, sans-serif', fontWeight:600,
-                    fontSize:'0.88rem', color:'var(--text)', display:'block', marginBottom:'0.25rem',
+                    fontSize:'0.9rem', color:'var(--text)', display:'block', marginBottom:'0.25rem',
                   }}>
                     {e.degree}
                   </span>
-                  <span style={{ fontSize:'0.72rem', color:'var(--muted)', display:'block' }}>
+                  <span style={{ fontSize:'0.74rem', color:'var(--muted)', display:'block' }}>
                     {e.institution}
                   </span>
-                  <span style={{ fontSize:'0.65rem', color:'var(--accent)', marginTop:'0.3rem', display:'block' }}>
+                  <span style={{ fontSize:'0.68rem', color:'var(--accent)', marginTop:'0.3rem', display:'block', fontWeight: 500 }}>
                     {e.year}
                   </span>
                 </motion.div>
@@ -104,20 +106,21 @@ export default function About() {
                   padding:'clamp(1.2rem, 3vw, 1.8rem) clamp(1rem, 3vw, 1.5rem)',
                   position:'relative',
                   overflow:'hidden',
+                  boxShadow: '0 4px 16px rgba(53, 53, 53, 0.04)',
                 }}
               >
                 <div style={{
-                  position:'absolute', top:0, left:0, right:0, height:'2px',
+                  position:'absolute', top:0, left:0, right:0, height:'3px',
                   background:`linear-gradient(90deg, var(--accent), var(--accent2))`,
                 }} />
                 <span style={{
                   fontFamily:'Syne, sans-serif', fontWeight:800,
-                  fontSize:'clamp(1.6rem, 5vw, 2.2rem)', color:'var(--accent)',
+                  fontSize:'clamp(1.6rem, 5vw, 2.2rem)', color:'var(--accent2)',
                   display:'block', lineHeight:1, marginBottom:'0.5rem',
                 }}>
                   {s.num}
                 </span>
-                <span style={{ fontSize:'0.68rem', color:'var(--muted)', letterSpacing:'0.05em' }}>
+                <span style={{ fontSize:'0.72rem', color:'var(--muted)', letterSpacing:'0.04em', fontWeight: 500 }}>
                   {s.label}
                 </span>
               </motion.div>

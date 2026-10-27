@@ -20,26 +20,29 @@ export default function Hero() {
       margin: '0 auto',
       width: '100%',
     }}>
-      {/* background orbs */}
+      {/* Background ambient orbs adapt to theme */}
       <div style={{
         position:'absolute', width: 'min(700px, 90vw)', height: 'min(700px, 90vw)',
-        background:'radial-gradient(circle, rgba(94,235,200,0.07) 0%, transparent 68%)',
-        borderRadius:'50%', top:-150, right:-100, pointerEvents:'none', filter:'blur(40px)',
+        background:'var(--orb-1)',
+        borderRadius:'50%', top:-150, right:-100, pointerEvents:'none', filter:'blur(50px)',
+        transition:'background 0.3s ease',
       }} />
       <div style={{
         position:'absolute', width: 'min(450px, 80vw)', height: 'min(450px, 80vw)',
-        background:'radial-gradient(circle, rgba(139,124,248,0.07) 0%, transparent 68%)',
+        background:'var(--orb-2)',
         borderRadius:'50%', bottom:100, left:-80, pointerEvents:'none', filter:'blur(60px)',
+        transition:'background 0.3s ease',
       }} />
 
       <div style={{ position:'relative', zIndex:2, maxWidth:780, width: '100%' }}>
         {/* status pill */}
         <motion.div {...fadeUp(0.1)} style={{
           display:'inline-flex', alignItems:'center', gap:'0.5rem',
-          fontSize:'clamp(0.6rem, 1.8vw, 0.68rem)', letterSpacing:'0.12em', textTransform:'uppercase',
-          color:'var(--accent)', border:'1px solid rgba(94,235,200,0.2)',
-          padding:'0.35rem 0.9rem', borderRadius:'100px', marginBottom:'clamp(1.2rem, 3vw, 2rem)',
-          background:'rgba(94,235,200,0.04)', fontFamily:'DM Mono, monospace',
+          fontSize:'clamp(0.62rem, 1.8vw, 0.7rem)', letterSpacing:'0.12em', textTransform:'uppercase',
+          color:'var(--accent)', border:'1px solid var(--pill-border)',
+          padding:'0.38rem 0.95rem', borderRadius:'100px', marginBottom:'clamp(1.2rem, 3vw, 2rem)',
+          background:'var(--pill-bg)', fontFamily:'DM Mono, monospace',
+          fontWeight: 500,
           maxWidth: '100%',
         }}>
           <span style={{
@@ -61,7 +64,7 @@ export default function Hero() {
           Azlan
           <br />
           <span style={{
-            WebkitTextStroke:'1px rgba(221,225,238,0.22)',
+            WebkitTextStroke:'var(--hero-stroke)',
             color:'transparent',
           }}>Sindhi</span>
           <span style={{ color:'var(--accent)' }}>.</span>
@@ -71,55 +74,78 @@ export default function Hero() {
         <motion.p {...fadeUp(0.35)} style={{
           fontFamily:'Fraunces, serif', fontStyle:'italic',
           fontSize:'clamp(1rem, 2.5vw, 1.35rem)',
-          color:'var(--muted)', marginBottom:'1.25rem',
-          letterSpacing:'0.01em', fontWeight:300,
+          color:'var(--accent2)', marginBottom:'1.25rem',
+          letterSpacing:'0.01em', fontWeight:400,
         }}>
           {profile.title}
         </motion.p>
 
         {/* desc */}
         <motion.p {...fadeUp(0.45)} style={{
-          maxWidth:480, color:'var(--muted)', fontSize:'clamp(0.8rem, 2vw, 0.85rem)',
+          maxWidth:480, color:'var(--muted)', fontSize:'clamp(0.82rem, 2vw, 0.88rem)',
           lineHeight:1.8, marginBottom:'clamp(1.8rem, 4vw, 3rem)',
         }}>
           {profile.tagline} Based in{' '}
-          <span style={{ color:'var(--text)' }}>{profile.location}</span>.
+          <span style={{ color:'var(--text)', fontWeight: 600 }}>{profile.location}</span>.
         </motion.p>
 
         {/* CTAs */}
         <motion.div {...fadeUp(0.55)} className="hero-cta-group">
           <a href="#projects" style={{
-            padding:'0.85rem 1.8rem', background:'var(--accent)', color:'#000',
+            padding:'0.85rem 1.8rem', background:'var(--accent)', color:'var(--btn-primary-text)',
             borderRadius:'8px', fontSize:'0.78rem', letterSpacing:'0.06em',
             fontWeight:600, fontFamily:'Syne, sans-serif',
             transition:'all 0.25s', display:'inline-flex', alignItems:'center', gap:'0.5rem',
+            boxShadow:'var(--btn-primary-shadow)',
           }}
-            onMouseEnter={e => { e.currentTarget.style.transform='translateY(-2px)'; e.currentTarget.style.boxShadow='0 0 40px rgba(94,235,200,0.35)'; }}
-            onMouseLeave={e => { e.currentTarget.style.transform='translateY(0)'; e.currentTarget.style.boxShadow='none'; }}
+            onMouseEnter={e => {
+              e.currentTarget.style.transform='translateY(-2px)';
+              e.currentTarget.style.boxShadow='var(--btn-primary-shadow-hover)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.transform='translateY(0)';
+              e.currentTarget.style.boxShadow='var(--btn-primary-shadow)';
+            }}
           >
             View Projects →
           </a>
           <a href="/cv.html" target="_blank" rel="noopener noreferrer" style={{
-            padding:'0.85rem 1.8rem', background:'rgba(139,124,248,0.1)', color:'#a49cf8',
+            padding:'0.85rem 1.8rem', background:'var(--btn-secondary-bg)', color:'var(--btn-secondary-color)',
             borderRadius:'8px', fontSize:'0.78rem', letterSpacing:'0.06em',
-            border:'1px solid rgba(139,124,248,0.3)', transition:'all 0.25s',
+            border:'1px solid var(--btn-secondary-border)', transition:'all 0.25s',
             display:'inline-flex', alignItems:'center', gap:'0.5rem',
             fontFamily:'Syne, sans-serif', fontWeight:600,
           }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor='var(--accent2)'; e.currentTarget.style.background='rgba(139,124,248,0.2)'; e.currentTarget.style.transform='translateY(-2px)'; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor='rgba(139,124,248,0.3)'; e.currentTarget.style.background='rgba(139,124,248,0.1)'; e.currentTarget.style.transform='translateY(0)'; }}
+            onMouseEnter={e => {
+              e.currentTarget.style.borderColor='var(--accent2)';
+              e.currentTarget.style.background='var(--btn-secondary-hover-bg)';
+              e.currentTarget.style.transform='translateY(-2px)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.borderColor='var(--btn-secondary-border)';
+              e.currentTarget.style.background='var(--btn-secondary-bg)';
+              e.currentTarget.style.transform='translateY(0)';
+            }}
           >
             View CV ↗
           </a>
           <a href={`mailto:${profile.email}`} style={{
-            padding:'0.85rem 1.8rem', background:'transparent', color:'var(--muted)',
+            padding:'0.85rem 1.8rem', background:'transparent', color:'var(--text)',
             borderRadius:'8px', fontSize:'0.78rem', letterSpacing:'0.06em',
-            border:'1px solid var(--border2)', transition:'all 0.25s',
+            border:'1px solid var(--border)', transition:'all 0.25s',
             display:'inline-flex', alignItems:'center', gap:'0.5rem',
-            fontFamily:'DM Mono, monospace',
+            fontFamily:'DM Mono, monospace', fontWeight: 500,
           }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor='var(--accent)'; e.currentTarget.style.color='var(--accent)'; e.currentTarget.style.transform='translateY(-2px)'; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor='var(--border2)'; e.currentTarget.style.color='var(--muted)'; e.currentTarget.style.transform='translateY(0)'; }}
+            onMouseEnter={e => {
+              e.currentTarget.style.borderColor='var(--accent)';
+              e.currentTarget.style.color='var(--accent)';
+              e.currentTarget.style.transform='translateY(-2px)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.borderColor='var(--border)';
+              e.currentTarget.style.color='var(--text)';
+              e.currentTarget.style.transform='translateY(0)';
+            }}
           >
             Get in Touch
           </a>
@@ -132,7 +158,7 @@ export default function Hero() {
           style={{
             position:'absolute', bottom:'-5rem', left:0,
             display:'flex', alignItems:'center', gap:'0.8rem',
-            color:'var(--dim)', fontSize:'0.62rem', letterSpacing:'0.15em', textTransform:'uppercase',
+            color:'var(--dim)', fontSize:'0.65rem', letterSpacing:'0.15em', textTransform:'uppercase',
           }}
         >
           <div style={{

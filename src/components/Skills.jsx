@@ -6,9 +6,9 @@ const Tag = ({ label, variant = 'soft' }) => (
   <motion.span
     whileHover={{ scale:1.05 }}
     style={{
-      padding:'0.4rem 0.95rem',
+      padding:'0.42rem 1rem',
       borderRadius:'100px',
-      fontSize:'clamp(0.7rem, 2vw, 0.75rem)',
+      fontSize:'clamp(0.7rem, 2vw, 0.76rem)',
       fontFamily:'DM Mono, monospace',
       cursor:'default',
       display:'inline-block',
@@ -16,14 +16,16 @@ const Tag = ({ label, variant = 'soft' }) => (
       overflow:'hidden',
       textOverflow:'ellipsis',
       whiteSpace:'nowrap',
+      fontWeight: 500,
       ...(variant === 'soft' ? {
         background:'var(--surface)',
         border:'1px solid var(--border)',
-        color:'var(--muted)',
+        color:'var(--text)',
+        boxShadow:'var(--shadow-sm)',
       } : {
-        background:'rgba(139,124,248,0.08)',
-        border:'1px solid rgba(139,124,248,0.25)',
-        color:'#a49cf8',
+        background:'var(--tag-tech-bg)',
+        border:'1px solid var(--tag-tech-border)',
+        color:'var(--tag-tech-color)',
       })
     }}
   >
@@ -42,8 +44,8 @@ export default function Skills() {
         <div className="skills-grid">
           <div>
             <p style={{
-              fontSize:'0.65rem', letterSpacing:'0.15em', textTransform:'uppercase',
-              color:'var(--muted)', marginBottom:'1.2rem',
+              fontSize:'0.68rem', letterSpacing:'0.15em', textTransform:'uppercase',
+              color:'var(--muted)', marginBottom:'1.2rem', fontWeight: 600,
             }}>
               ✦ Professional & Transferable Skills
             </p>
@@ -64,8 +66,8 @@ export default function Skills() {
 
           <div>
             <p style={{
-              fontSize:'0.65rem', letterSpacing:'0.15em', textTransform:'uppercase',
-              color:'var(--accent2)', marginBottom:'1.2rem',
+              fontSize:'0.68rem', letterSpacing:'0.15em', textTransform:'uppercase',
+              color:'var(--accent2)', marginBottom:'1.2rem', fontWeight: 600,
             }}>
               ⚡ Technical Competencies
             </p>
@@ -73,7 +75,7 @@ export default function Skills() {
               {(skills.categories || []).map((cat, ci) => (
                 <div key={cat.category}>
                   <p style={{
-                    fontSize:'0.72rem', color:'var(--text)', fontWeight:600,
+                    fontSize:'0.76rem', color:'var(--text)', fontWeight:700,
                     fontFamily:'Syne, sans-serif', marginBottom:'0.55rem',
                   }}>
                     {cat.category}
@@ -101,7 +103,7 @@ export default function Skills() {
         <div style={{
           marginTop:'clamp(2.5rem, 5vw, 4rem)', overflow:'hidden',
           borderTop:'1px solid var(--border)', borderBottom:'1px solid var(--border)',
-          padding:'0.85rem 0', position:'relative',
+          padding:'0.9rem 0', position:'relative', background: 'var(--surface)',
         }}>
           <motion.div
             animate={{ x: [0, -2000] }}
@@ -110,8 +112,8 @@ export default function Skills() {
           >
             {[...skills.tech, ...skills.tech, ...skills.tech].map((s, i) => (
               <span key={i} style={{
-                color:'var(--dim)', fontSize:'0.72rem', letterSpacing:'0.1em',
-                textTransform:'uppercase', fontFamily:'DM Mono, monospace',
+                color:'var(--dim)', fontSize:'0.74rem', letterSpacing:'0.1em',
+                textTransform:'uppercase', fontFamily:'DM Mono, monospace', fontWeight: 500,
               }}>
                 {s} <span style={{ color:'var(--accent)', margin:'0 0.4rem' }}>✦</span>
               </span>

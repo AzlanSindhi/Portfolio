@@ -39,15 +39,16 @@ export default function Cursor() {
       <div ref={dot} className="custom-cursor" style={{
         position:'fixed', width:8, height:8, background:'var(--accent)',
         borderRadius:'50%', pointerEvents:'none', zIndex:10000,
-        transform:'translate(-50%,-50%)', mixBlendMode:'screen',
-        transition:'width .15s, height .15s'
+        transform:'translate(-50%,-50%)', opacity: 0.9,
+        transition:'width .15s, height .15s, background-color 0.25s'
       }} />
       <div ref={ring} className="custom-cursor" style={{
         position:'fixed', width:34, height:34,
-        border:'1px solid rgba(94,235,200,0.4)', borderRadius:'50%',
+        border:'1.5px solid var(--accent)', borderRadius:'50%',
         pointerEvents:'none', zIndex:9999,
+        opacity: 0.45,
         transform:'translate(-50%,-50%)',
-        transition:'left .12s ease, top .12s ease, width .22s, height .22s'
+        transition:'left .12s ease, top .12s ease, width .22s, height .22s, border-color 0.25s'
       }} />
     </>
   );

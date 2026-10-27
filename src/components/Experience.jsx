@@ -24,7 +24,7 @@ function ExperienceCard({ exp, index }) {
             borderRadius: '50%',
             background: exp.current ? 'var(--accent)' : 'var(--surface)',
             border: `2px solid ${exp.current ? 'var(--accent)' : 'var(--border2)'}`,
-            boxShadow: exp.current ? '0 0 16px rgba(94,235,200,0.5)' : 'none',
+            boxShadow: exp.current ? '0 0 14px var(--glow)' : 'none',
             flexShrink: 0,
             marginTop: '0.35rem',
             position: 'relative',
@@ -33,17 +33,17 @@ function ExperienceCard({ exp, index }) {
         />
         {/* line */}
         <div style={{
-          width: 1,
+          width: 2,
           flex: 1,
           minHeight: 40,
-          background: 'linear-gradient(to bottom, var(--border2), transparent)',
+          background: 'linear-gradient(to bottom, var(--border), transparent)',
           marginTop: '0.4rem',
         }} />
       </div>
 
       {/* Card */}
       <motion.div
-        whileHover={{ y: -3, borderColor: 'rgba(94,235,200,0.25)' }}
+        whileHover={{ y: -3, borderColor: 'var(--accent)', boxShadow: 'var(--card-shadow-hover)' }}
         style={{
           flex: 1,
           minWidth: 0,
@@ -54,13 +54,14 @@ function ExperienceCard({ exp, index }) {
           marginBottom: '1.5rem',
           position: 'relative',
           overflow: 'hidden',
+          boxShadow: 'var(--card-shadow)',
           transition: 'border-color 0.3s, box-shadow 0.3s',
         }}
       >
         {/* top accent */}
         {exp.current && (
           <div style={{
-            position: 'absolute', top: 0, left: 0, right: 0, height: '2px',
+            position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
             background: 'linear-gradient(90deg, var(--accent), var(--accent2))',
           }} />
         )}
@@ -69,7 +70,7 @@ function ExperienceCard({ exp, index }) {
         <div style={{
           position: 'absolute', inset: 0, pointerEvents: 'none',
           background: exp.current
-            ? 'radial-gradient(circle at 90% 10%, rgba(94,235,200,0.05), transparent 55%)'
+            ? 'radial-gradient(circle at 90% 10%, var(--glow), transparent 55%)'
             : 'none',
         }} />
 
@@ -83,18 +84,19 @@ function ExperienceCard({ exp, index }) {
             {/* type badge */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.4rem', flexWrap: 'wrap' }}>
               <span style={{
-                fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase',
+                fontSize: '0.66rem', letterSpacing: '0.14em', textTransform: 'uppercase',
                 color: exp.current ? 'var(--accent)' : 'var(--accent2)',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'DM Mono, monospace', fontWeight: 600,
               }}>
                 {exp.type}
               </span>
               {exp.current && (
                 <span style={{
                   display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
-                  fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase',
-                  background: 'rgba(94,235,200,0.08)', border: '1px solid rgba(94,235,200,0.2)',
-                  color: 'var(--accent)', padding: '0.15rem 0.5rem', borderRadius: '100px',
+                  fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase',
+                  background: 'var(--pill-bg)', border: '1px solid var(--pill-border)',
+                  color: 'var(--accent)', padding: '0.18rem 0.55rem', borderRadius: '100px',
+                  fontWeight: 600,
                 }}>
                   <span style={{
                     width: 5, height: 5, borderRadius: '50%', background: 'var(--accent)',
@@ -108,25 +110,26 @@ function ExperienceCard({ exp, index }) {
             {/* role */}
             <h3 style={{
               fontFamily: 'Syne, sans-serif', fontWeight: 700,
-              fontSize: 'clamp(1rem, 2.5vw, 1.15rem)', color: 'var(--text)',
+              fontSize: 'clamp(1rem, 2.5vw, 1.18rem)', color: 'var(--text)',
               letterSpacing: '-0.01em', lineHeight: 1.25,
             }}>
               {exp.role}
             </h3>
-            <p style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: '0.25rem' }}>
+            <p style={{ fontSize: '0.82rem', color: 'var(--muted)', marginTop: '0.25rem', fontWeight: 500 }}>
               {exp.company}
             </p>
           </div>
 
           {/* duration */}
           <span style={{
-            fontSize: '0.68rem', color: 'var(--dim)', letterSpacing: '0.06em',
+            fontSize: '0.7rem', color: 'var(--dim)', letterSpacing: '0.06em',
             fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap',
-            padding: '0.25rem 0.65rem',
+            padding: '0.28rem 0.7rem',
             background: 'var(--bg2)',
             border: '1px solid var(--border)',
             borderRadius: '6px',
             alignSelf: 'flex-start',
+            fontWeight: 500,
           }}>
             {exp.duration}
           </span>
@@ -143,11 +146,12 @@ function ExperienceCard({ exp, index }) {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.4rem',
-                fontSize: '0.75rem',
+                fontSize: '0.78rem',
                 color: 'var(--accent)',
                 fontFamily: 'DM Mono, monospace',
                 textDecoration: 'none',
                 wordBreak: 'break-all',
+                fontWeight: 500,
               }}
               onMouseEnter={e => e.currentTarget.style.textDecoration = 'underline'}
               onMouseLeave={e => e.currentTarget.style.textDecoration = 'none'}
@@ -159,7 +163,7 @@ function ExperienceCard({ exp, index }) {
 
         {/* description */}
         <p style={{
-          fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.85, marginBottom: '1.1rem',
+          fontSize: '0.84rem', color: 'var(--muted)', lineHeight: 1.85, marginBottom: '1.1rem',
         }}>
           {exp.description}
         </p>
@@ -170,7 +174,7 @@ function ExperienceCard({ exp, index }) {
             {exp.highlights.map((h, i) => (
               <li key={i} style={{
                 display: 'flex', alignItems: 'flex-start', gap: '0.6rem',
-                fontSize: '0.78rem', color: 'var(--muted)', lineHeight: 1.6,
+                fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.6,
               }}>
                 <span style={{ color: 'var(--accent)', flexShrink: 0, marginTop: '0.2rem' }}>▸</span>
                 <span>{h}</span>
@@ -183,9 +187,10 @@ function ExperienceCard({ exp, index }) {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem' }}>
           {exp.tags.map(t => (
             <span key={t} style={{
-              fontSize: '0.62rem', padding: '0.25rem 0.65rem', borderRadius: '4px',
-              background: 'rgba(139,124,248,0.08)', border: '1px solid rgba(139,124,248,0.2)',
-              color: '#a49cf8', letterSpacing: '0.04em', fontFamily: 'DM Mono, monospace',
+              fontSize: '0.64rem', padding: '0.28rem 0.7rem', borderRadius: '4px',
+              background: 'var(--tag-tech-bg)', border: '1px solid var(--tag-tech-border)',
+              color: 'var(--tag-tech-color)', letterSpacing: '0.04em', fontFamily: 'DM Mono, monospace',
+              fontWeight: 500,
             }}>
               {t}
             </span>
@@ -225,23 +230,25 @@ export default function Experience() {
               background: 'var(--surface)', border: '1px solid var(--border)',
               borderRadius: '14px', padding: 'clamp(1.25rem, 3vw, 2rem)',
               overflow: 'hidden', position: 'relative',
+              boxShadow: 'var(--card-shadow)',
             }}>
               <div style={{
-                position: 'absolute', top: 0, left: 0, right: 0, height: '2px',
-                background: 'linear-gradient(90deg, var(--accent2), var(--accent3))',
+                position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
+                background: 'linear-gradient(90deg, var(--accent2), var(--accent))',
               }} />
 
               <p style={{
-                fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase',
+                fontSize: '0.66rem', letterSpacing: '0.14em', textTransform: 'uppercase',
                 color: 'var(--accent2)', marginBottom: '0.8rem', fontFamily: 'DM Mono, monospace',
+                fontWeight: 600,
               }}>
                 🎓 Status
               </p>
 
               <p style={{
                 fontFamily: 'Fraunces, serif', fontStyle: 'italic',
-                fontSize: '1rem', color: 'var(--text)', lineHeight: 1.5,
-                marginBottom: '1.4rem', fontWeight: 300,
+                fontSize: '1.02rem', color: 'var(--text)', lineHeight: 1.55,
+                marginBottom: '1.4rem', fontWeight: 400,
               }}>
                 "Pragmatic MSc student & full-stack developer focused on scalable, data-driven solutions."
               </p>
@@ -260,10 +267,10 @@ export default function Experience() {
                   }}>
                     <span style={{ fontSize: '1rem', flexShrink: 0 }}>{item.icon}</span>
                     <div style={{ minWidth: 0 }}>
-                      <span style={{ fontSize: '0.62rem', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block' }}>
+                      <span style={{ fontSize: '0.64rem', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', fontWeight: 500 }}>
                         {item.label}
                       </span>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--text)', wordBreak: 'break-word' }}>{item.sub}</span>
+                      <span style={{ fontSize: '0.76rem', color: 'var(--text)', wordBreak: 'break-word', fontWeight: 600 }}>{item.sub}</span>
                     </div>
                   </div>
                 ))}
@@ -273,14 +280,15 @@ export default function Experience() {
                 href={`mailto:${profile.email}`}
                 style={{
                   display: 'block', marginTop: '1.4rem',
-                  padding: '0.8rem', textAlign: 'center',
-                  background: 'var(--accent)', color: '#000',
-                  borderRadius: '8px', fontSize: '0.78rem',
+                  padding: '0.85rem', textAlign: 'center',
+                  background: 'var(--accent)', color: 'var(--btn-primary-text)',
+                  borderRadius: '8px', fontSize: '0.8rem',
                   fontFamily: 'Syne, sans-serif', fontWeight: 700,
-                  letterSpacing: '0.04em', transition: 'box-shadow 0.25s',
+                  letterSpacing: '0.04em', transition: 'all 0.25s',
+                  boxShadow: 'var(--btn-primary-shadow)',
                 }}
-                onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 30px rgba(94,235,200,0.35)'}
-                onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
+                onMouseEnter={e => e.currentTarget.style.boxShadow = 'var(--btn-primary-shadow-hover)'}
+                onMouseLeave={e => e.currentTarget.style.boxShadow = 'var(--btn-primary-shadow)'}
               >
                 Hire Me →
               </a>

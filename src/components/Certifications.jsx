@@ -56,8 +56,8 @@ export default function Certifications() {
                 }}
                 whileHover={{
                   y: -4,
-                  borderColor: 'rgba(94,235,200,0.3)',
-                  boxShadow: '0 10px 30px -15px rgba(94,235,200,0.1)',
+                  borderColor: 'var(--accent)',
+                  boxShadow: 'var(--card-shadow-hover)',
                 }}
                 onClick={() => setSelectedCert(cert)}
                 style={{
@@ -69,6 +69,7 @@ export default function Certifications() {
                   alignItems: 'center',
                   gap: 'clamp(0.8rem, 2.5vw, 1.4rem)',
                   cursor: 'pointer',
+                  boxShadow: 'var(--card-shadow)',
                   transition: 'border-color 0.25s, box-shadow 0.25s',
                 }}
               >
@@ -79,7 +80,7 @@ export default function Certifications() {
                     height: '44px',
                     borderRadius: '10px',
                     background: 'var(--bg2)',
-                    border: '1px solid var(--border2)',
+                    border: '1px solid var(--border)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -98,7 +99,7 @@ export default function Certifications() {
                       marginBottom: '0.2rem',
                       fontFamily: 'Syne, sans-serif',
                       fontWeight: 600,
-                      fontSize: '0.9rem',
+                      fontSize: '0.92rem',
                       color: 'var(--text)',
                       wordBreak: 'break-word',
                     }}
@@ -109,7 +110,7 @@ export default function Certifications() {
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem', flexWrap: 'wrap' }}>
                     <span
                       style={{
-                        fontSize: '0.72rem',
+                        fontSize: '0.74rem',
                         color: 'var(--muted)',
                       }}
                     >
@@ -117,10 +118,11 @@ export default function Certifications() {
                     </span>
                     <span
                       style={{
-                        fontSize: '0.65rem',
+                        fontSize: '0.68rem',
                         color: 'var(--dim)',
                         letterSpacing: '0.05em',
                         whiteSpace: 'nowrap',
+                        fontWeight: 500,
                       }}
                     >
                       {cert.date}
@@ -131,7 +133,7 @@ export default function Certifications() {
                 <span
                   style={{
                     color: 'var(--accent)',
-                    fontSize: '0.85rem',
+                    fontSize: '0.9rem',
                     flexShrink: 0,
                   }}
                 >
@@ -154,7 +156,7 @@ export default function Certifications() {
             style={{
               position: 'fixed',
               inset: 0,
-              background: 'rgba(7, 9, 16, 0.88)',
+              background: 'var(--modal-overlay)',
               backdropFilter: 'blur(10px)',
               display: 'flex',
               justifyContent: 'center',
@@ -181,7 +183,7 @@ export default function Certifications() {
                 position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
-                boxShadow: '0 20px 50px rgba(0,0,0,0.6)',
+                boxShadow: 'var(--shadow-md)',
               }}
             >
               {/* Top Accent Line */}
@@ -201,6 +203,7 @@ export default function Certifications() {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   gap: '1rem',
+                  background: 'var(--surface)',
                 }}
               >
                 <div style={{ minWidth: 0 }}>
@@ -218,7 +221,7 @@ export default function Certifications() {
                   </h3>
                   <p
                     style={{
-                      fontSize: '0.72rem',
+                      fontSize: '0.74rem',
                       color: 'var(--muted)',
                       marginTop: '0.2rem',
                     }}
@@ -230,7 +233,7 @@ export default function Certifications() {
                   onClick={() => setSelectedCert(null)}
                   style={{
                     background: 'var(--bg2)',
-                    border: '1px solid var(--border2)',
+                    border: '1px solid var(--border)',
                     color: 'var(--text)',
                     width: '32px',
                     height: '32px',
@@ -248,7 +251,7 @@ export default function Certifications() {
                     e.currentTarget.style.color = 'var(--accent)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--border2)';
+                    e.currentTarget.style.borderColor = 'var(--border)';
                     e.currentTarget.style.color = 'var(--text)';
                   }}
                 >
@@ -260,7 +263,7 @@ export default function Certifications() {
               <div
                 style={{
                   padding: 'clamp(1rem, 2.5vw, 1.8rem)',
-                  background: 'rgba(7, 9, 16, 0.4)',
+                  background: 'var(--bg2)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -277,19 +280,19 @@ export default function Certifications() {
                       width="100%"
                       style={{
                         height: 'clamp(280px, 45vh, 480px)',
-                        border: '1px solid var(--border2)',
+                        border: '1px solid var(--border)',
                         borderRadius: '8px',
                         background: 'var(--bg)',
                       }}
                       title={selectedCert.title}
                     />
-                    <p style={{ fontSize: '0.72rem', color: 'var(--muted)', textAlign: 'center' }}>
+                    <p style={{ fontSize: '0.74rem', color: 'var(--muted)', textAlign: 'center' }}>
                       PDF viewer not loading?{' '}
                       <a
                         href={selectedCert.fileUrl}
                         target="_blank"
                         rel="noreferrer"
-                        style={{ color: 'var(--accent)', textDecoration: 'underline' }}
+                        style={{ color: 'var(--accent)', textDecoration: 'underline', fontWeight: 500 }}
                       >
                         Open PDF in New Tab ↗
                       </a>
@@ -304,7 +307,7 @@ export default function Certifications() {
                       maxHeight: 'clamp(280px, 45vh, 480px)',
                       objectFit: 'contain',
                       borderRadius: '8px',
-                      boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+                      boxShadow: 'var(--shadow-md)',
                     }}
                   />
                 ) : (
@@ -319,7 +322,7 @@ export default function Certifications() {
                   }}>
                     <div style={{
                       width: '64px', height: '64px', borderRadius: '16px',
-                      background: 'var(--surface)', border: '1px solid var(--border2)',
+                      background: 'var(--surface)', border: '1px solid var(--border)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       fontSize: '2rem',
                     }}>
@@ -329,11 +332,11 @@ export default function Certifications() {
                       <h4 style={{ fontFamily: 'Syne, sans-serif', color: 'var(--text)', fontSize: 'clamp(1.1rem, 3vw, 1.25rem)', marginBottom: '0.35rem' }}>
                         {selectedCert.title}
                       </h4>
-                      <p style={{ color: 'var(--muted)', fontSize: '0.82rem' }}>
+                      <p style={{ color: 'var(--muted)', fontSize: '0.84rem' }}>
                         Issued by <strong style={{ color: 'var(--text)' }}>{selectedCert.issuer}</strong> · {selectedCert.date}
                       </p>
                     </div>
-                    <p style={{ color: 'var(--dim)', fontSize: '0.75rem', lineHeight: 1.6, maxWidth: 380 }}>
+                    <p style={{ color: 'var(--dim)', fontSize: '0.78rem', lineHeight: 1.6, maxWidth: 380 }}>
                       Verified completion credential awarded to Azlan Sindhi for demonstrating competency and completing assessment requirements.
                     </p>
                     {selectedCert.url && selectedCert.url !== '#' && (
@@ -345,7 +348,7 @@ export default function Certifications() {
                           marginTop: '0.4rem',
                           padding: '0.65rem 1.4rem',
                           background: 'var(--accent)',
-                          color: '#000',
+                          color: 'var(--btn-primary-text)',
                           borderRadius: '7px',
                           fontWeight: 600,
                           fontSize: '0.78rem',
@@ -354,6 +357,7 @@ export default function Certifications() {
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: '0.4rem',
+                          boxShadow: 'var(--btn-primary-shadow)',
                         }}
                       >
                         Verify Credential Profile ↗
@@ -371,7 +375,7 @@ export default function Certifications() {
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  background: 'var(--bg2)',
+                  background: 'var(--surface)',
                   flexWrap: 'wrap',
                   gap: '0.8rem',
                 }}
@@ -382,12 +386,13 @@ export default function Certifications() {
                     target="_blank"
                     rel="noreferrer"
                     style={{
-                      fontSize: '0.72rem',
+                      fontSize: '0.74rem',
                       color: 'var(--accent2)',
                       fontFamily: 'DM Mono, monospace',
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '0.3rem',
+                      fontWeight: 500,
                     }}
                   >
                     Verify Original Credential ↗
@@ -406,20 +411,21 @@ export default function Certifications() {
                       style={{
                         padding: '0.55rem 1.2rem',
                         background: 'var(--accent)',
-                        color: '#000',
+                        color: 'var(--btn-primary-text)',
                         borderRadius: '6px',
-                        fontSize: '0.72rem',
+                        fontSize: '0.74rem',
                         fontFamily: 'Syne, sans-serif',
                         fontWeight: 600,
                         cursor: 'pointer',
                         transition: 'all 0.2s',
                         textDecoration: 'none',
+                        boxShadow: 'var(--btn-primary-shadow)',
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.boxShadow = '0 0 15px rgba(94,235,200,0.3)';
+                        e.currentTarget.style.boxShadow = 'var(--btn-primary-shadow-hover)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.boxShadow = 'none';
+                        e.currentTarget.style.boxShadow = 'var(--btn-primary-shadow)';
                       }}
                     >
                       Download File ↓
@@ -430,10 +436,10 @@ export default function Certifications() {
                     style={{
                       padding: '0.55rem 1.2rem',
                       background: 'transparent',
-                      border: '1px solid var(--border2)',
+                      border: '1px solid var(--border)',
                       color: 'var(--muted)',
                       borderRadius: '6px',
-                      fontSize: '0.72rem',
+                      fontSize: '0.74rem',
                       fontFamily: 'DM Mono, monospace',
                       cursor: 'pointer',
                       transition: 'all 0.2s',
@@ -443,7 +449,7 @@ export default function Certifications() {
                       e.currentTarget.style.color = 'var(--text)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = 'var(--border2)';
+                      e.currentTarget.style.borderColor = 'var(--border)';
                       e.currentTarget.style.color = 'var(--muted)';
                     }}
                   >
